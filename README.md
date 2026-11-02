@@ -1,2 +1,1362 @@
-# physics-10
-online physics grade 10 study notes 
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>فیزیک دهم | فصل اول — فیزیک و اندازه‌گیری</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --surface: #ffffff;
+      --surface-2: #eef4fa;
+      --surface-3: #e3edf7;
+      --border: #d6e3ef;
+      --text: #14232e;
+      --text-muted: #4a6579;
+      --heading: #0b2b4a;
+      --accent: #0e7c6b;
+      --accent-soft: #e1f4f0;
+      --accent-border: #b3e0d6;
+      --warn-bg: #fff6e6;
+      --warn-border: #f0c78a;
+      --warn-text: #8a5600;
+      --note-bg: #eaf3ff;
+      --note-border: #b9d4f7;
+      --note-text: #1a4e8a;
+      --example-bg: #eefaf2;
+      --example-border: #b3e6c8;
+      --example-text: #16603a;
+      --danger: #c0392b;
+      --success: #1e7e5a;
+      --shadow: 0 10px 30px -12px rgba(11, 43, 74, 0.15);
+      --radius: 1.25rem;
+      --font: 'Vazirmatn', 'Segoe UI', Tahoma, system-ui, sans-serif;
+      --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      --header-h: 64px;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0b151e;
+      --surface: #111f2b;
+      --surface-2: #17293a;
+      --surface-3: #1e3548;
+      --border: #254055;
+      --text: #d4e4f2;
+      --text-muted: #8aa7bd;
+      --heading: #c3e0f5;
+      --accent: #3ec9b0;
+      --accent-soft: #123a35;
+      --accent-border: #1e5c52;
+      --warn-bg: #2a2115;
+      --warn-border: #6b4d1e;
+      --warn-text: #f0c47a;
+      --note-bg: #142433;
+      --note-border: #2a4a6b;
+      --note-text: #9cc6f0;
+      --example-bg: #11261b;
+      --example-border: #2a5c3f;
+      --example-text: #8fd6a8;
+      --danger: #e06b5c;
+      --success: #3ec9b0;
+      --shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.6);
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.9;
+      direction: rtl;
+      font-size: 16px;
+      transition: background var(--transition), color var(--transition);
+      min-height: 100vh;
+      padding-bottom: 2rem;
+      overflow-x: hidden;
+    }
+    a { color: var(--accent); text-decoration: none; transition: color var(--transition); }
+    a:hover { color: var(--heading); }
+    p { margin: 0.7rem 0; }
+    ul, ol { padding-right: 1.6rem; margin: 0.6rem 0; }
+    li { margin: 0.35rem 0; }
+    strong { font-weight: 700; color: var(--heading); }
+    ::selection { background: var(--accent); color: #fff; }
+    img { max-width: 100%; height: auto; }
+
+    h1, h2, h3, h4 { color: var(--heading); line-height: 1.5; }
+    h1 { font-size: clamp(1.4rem, 4vw, 2.1rem); font-weight: 800; letter-spacing: -0.01em; }
+    h2 { font-size: clamp(1.2rem, 3vw, 1.55rem); font-weight: 800; margin-bottom: 0.6rem; }
+    h3 { font-size: clamp(1rem, 2.5vw, 1.12rem); font-weight: 700; color: var(--accent); margin: 1.6rem 0 0.5rem; }
+    h4 { font-size: 1rem; font-weight: 700; margin: 1rem 0 0.3rem; }
+
+    /* ============ BDI: نمایش صحیح یکا و عدد ============ */
+    /* از تگ bdi خود HTML استفاده می‌کنیم که در همه مرورگرها پشتیبانی می‌شود.
+       اینجا فقط یک استایل ظاهری کوچک اضافه می‌کنیم. */
+    bdi.unit {
+      font-family: 'Courier New', 'Vazirmatn', monospace;
+      background: var(--surface-3);
+      padding: 0.02rem 0.35rem;
+      border-radius: 0.35rem;
+      color: var(--heading);
+      font-size: 0.92em;
+      /* هیچ direction یا unicode-bidi لازم نیست — bdi خودش کار می‌کند */
+    }
+
+    /* ============ بردار: SVG واقعی، بدون mask ============ */
+    .vec {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.05em;
+      position: relative;
+      font-style: italic;
+      font-family: 'Times New Roman', 'Vazirmatn', serif;
+      direction: ltr;
+      vertical-align: baseline;
+      padding-top: 0.15em;
+    }
+    .vec svg {
+      width: 0.55em;
+      height: 0.5em;
+      position: absolute;
+      top: -0.15em;
+      left: 50%;
+      transform: translateX(-50%);
+      fill: currentColor;
+      pointer-events: none;
+    }
+
+    /* ============ HEADER ============ */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: color-mix(in srgb, var(--surface) 90%, transparent);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      transition: background var(--transition), border-color var(--transition);
+    }
+    .header-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.7rem 1.2rem;
+      min-height: var(--header-h);
+    }
+    .brand { display: flex; align-items: center; gap: 0.6rem; min-width: 0; }
+    .brand-badge {
+      width: 2.6rem; height: 2.6rem;
+      display: grid; place-items: center;
+      background: linear-gradient(135deg, var(--accent), #0a5b4f);
+      color: #fff;
+      font-weight: 800;
+      border-radius: 0.9rem;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 12px -4px var(--accent);
+      flex-shrink: 0;
+    }
+    .brand-text { min-width: 0; }
+    .brand-text small { display: block; font-size: 0.7rem; color: var(--text-muted); line-height: 1.3; }
+    .brand-text strong { font-size: 0.95rem; color: var(--heading); display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    .header-actions { display: flex; align-items: center; gap: 0.5rem; flex-shrink: 0; }
+    .icon-btn {
+      width: 2.5rem; height: 2.5rem;
+      display: grid; place-items: center;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 0.8rem;
+      color: var(--text);
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: all var(--transition);
+    }
+    .icon-btn:hover { background: var(--accent-soft); border-color: var(--accent-border); color: var(--accent); }
+    .menu-toggle { display: none; }
+
+    /* ============ LAYOUT ============ */
+    .page-wrap {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 250px 1fr;
+      gap: 1.6rem;
+      padding: 1.5rem 1.2rem;
+      align-items: start;
+    }
+
+    /* ============ SIDEBAR ============ */
+    .sidebar {
+      position: sticky;
+      top: calc(var(--header-h) + 1rem);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 0.85rem;
+      box-shadow: var(--shadow);
+      max-height: calc(100vh - var(--header-h) - 2rem);
+      overflow-y: auto;
+      transition: background var(--transition), border-color var(--transition), transform var(--transition);
+    }
+    .sidebar-title {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 0 0.6rem 0.5rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 0.5rem;
+    }
+    .nav-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.15rem; }
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      padding: 0.55rem 0.7rem;
+      border-radius: 0.7rem;
+      color: var(--text);
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all var(--transition);
+      border: 1px solid transparent;
+      cursor: pointer;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .nav-link .nav-icon {
+      width: 1.6rem; height: 1.6rem;
+      display: grid; place-items: center;
+      background: var(--surface-2);
+      border-radius: 0.5rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--accent);
+      flex-shrink: 0;
+      transition: all var(--transition);
+    }
+    .nav-link:hover { background: var(--surface-2); color: var(--heading); }
+    .nav-link.active {
+      background: var(--accent-soft);
+      border-color: var(--accent-border);
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .nav-link.active .nav-icon { background: var(--accent); color: #fff; }
+    .nav-divider { height: 1px; background: var(--border); margin: 0.5rem 0.4rem; }
+
+    /* ============ MAIN ============ */
+    .main-content { min-width: 0; }
+
+    .hero {
+      background: linear-gradient(135deg, var(--surface), var(--surface-2));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: clamp(1.2rem, 4vw, 2.2rem);
+      margin-bottom: 1.6rem;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      scroll-margin-top: calc(var(--header-h) + 1rem);
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -60px; left: -60px;
+      width: 220px; height: 220px;
+      background: radial-gradient(circle, var(--accent-soft), transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.78rem;
+      padding: 0.25rem 0.9rem;
+      border-radius: 2rem;
+      border: 1px solid var(--accent-border);
+      margin-bottom: 0.9rem;
+    }
+    .hero h1 { margin-bottom: 0.5rem; }
+    .hero p { color: var(--text-muted); max-width: 65ch; margin-bottom: 1.2rem; }
+    .hero-stats {
+      display: flex; flex-wrap: wrap; gap: 0.6rem;
+      position: relative; z-index: 1;
+    }
+    .stat-chip {
+      display: flex; align-items: center; gap: 0.4rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 0.3rem 0.85rem;
+      border-radius: 2rem;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+    .stat-chip span:first-child { font-size: 1rem; }
+
+    /* ============ SECTIONS ============ */
+    .content-section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: clamp(1.2rem, 3vw, 1.8rem);
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow);
+      transition: background var(--transition), border-color var(--transition);
+      scroll-margin-top: calc(var(--header-h) + 1rem);
+    }
+    .section-head {
+      display: flex; align-items: center; gap: 0.8rem;
+      margin-bottom: 0.9rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 2px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .section-num {
+      width: 2.4rem; height: 2.4rem;
+      display: grid; place-items: center;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 800;
+      border-radius: 0.8rem;
+      font-size: 1.05rem;
+      flex-shrink: 0;
+    }
+    .section-head h2 { margin: 0; flex: 1; min-width: 0; }
+    .section-head small { display: block; font-size: 0.8rem; color: var(--text-muted); font-weight: 400; }
+
+    /* ============ INFO CARDS ============ */
+    .info-card {
+      border-radius: 1rem;
+      padding: 1rem 1.25rem;
+      margin: 1.1rem 0;
+      border: 1px solid;
+      border-right: 4px solid;
+      transition: all var(--transition);
+    }
+    .info-card .ic-title {
+      display: flex; align-items: center; gap: 0.45rem;
+      font-weight: 800; font-size: 0.95rem; margin-bottom: 0.35rem;
+    }
+    .info-card p:last-child { margin-bottom: 0; }
+    .card-note { background: var(--note-bg); border-color: var(--note-border); border-right-color: #3b82f6; }
+    .card-note .ic-title { color: var(--note-text); }
+    .card-warn { background: var(--warn-bg); border-color: var(--warn-border); border-right-color: #d97706; }
+    .card-warn .ic-title { color: var(--warn-text); }
+    .card-example { background: var(--example-bg); border-color: var(--example-border); border-right-color: var(--accent); }
+    .card-example .ic-title { color: var(--example-text); }
+
+    /* ============ TABLES ============ */
+    .table-scroll {
+      overflow-x: auto;
+      border-radius: 0.9rem;
+      border: 1px solid var(--border);
+      margin: 1rem 0;
+      -webkit-overflow-scrolling: touch;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      min-width: 380px;
+    }
+    thead th {
+      background: var(--surface-2);
+      color: var(--heading);
+      font-weight: 700;
+      padding: 0.7rem 0.55rem;
+      border-bottom: 2px solid var(--border);
+      text-align: center;
+    }
+    tbody td {
+      padding: 0.55rem;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+    }
+    tbody tr:last-child td { border-bottom: none; }
+    tbody tr:hover { background: var(--surface-2); }
+    .table-caption {
+      background: var(--surface-2);
+      padding: 0.4rem 0.9rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+    }
+
+    /* ============ شکل‌های آموزشی دوبعدی ============ */
+    .visual-card { margin: 1.1rem 0; padding: 1rem; border: 1px solid var(--border); border-radius: 1rem; background: var(--surface-2); }
+    .visual-title { font-weight: 800; color: var(--heading); margin-bottom: .7rem; }
+    .visual-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(155px, 1fr)); gap: .75rem; }
+    .visual-item { min-width: 0; text-align: center; padding: .7rem; background: var(--surface); border: 1px solid var(--border); border-radius: .8rem; }
+    .visual-item svg { width: 100%; max-width: 230px; height: auto; display: block; margin: 0 auto .35rem; }
+    .visual-item strong { display:block; font-size:.9rem; }
+    .visual-item small { display:block; color:var(--text-muted); font-size:.78rem; line-height:1.7; }
+    .diagram-caption { color:var(--text-muted); font-size:.8rem; margin-top:.5rem; }
+    .footer-link { display:inline-flex; align-items:center; gap:.35rem; margin-top:.45rem; padding:.35rem .8rem; border:1px solid var(--accent-border); border-radius:2rem; background:var(--accent-soft); font-weight:700; }
+    .footer-credit { color:var(--text-muted); font-size:.84rem; margin-top:.4rem; }
+
+    /* ============ FORMULA ============ */
+    .formula {
+      background: var(--surface-2);
+      border: 1px dashed var(--accent-border);
+      border-radius: 0.9rem;
+      padding: 0.85rem 1.2rem;
+      margin: 1rem 0;
+      text-align: center;
+      direction: ltr;
+      font-family: 'Courier New', monospace;
+      font-size: clamp(0.95rem, 2.5vw, 1.15rem);
+      letter-spacing: 0.5px;
+      color: var(--heading);
+      overflow-x: auto;
+    }
+
+    /* ============ QUIZ ============ */
+    .quiz-toolbar {
+      display: flex; flex-wrap: wrap; gap: 1rem;
+      align-items: center; justify-content: space-between;
+      margin-bottom: 1.2rem;
+    }
+    .score-pill {
+      background: var(--accent-soft);
+      border: 1px solid var(--accent-border);
+      color: var(--accent);
+      font-weight: 700;
+      padding: 0.35rem 1.1rem;
+      border-radius: 2rem;
+      font-size: 0.88rem;
+    }
+    .btn-reset {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 0.85rem;
+      padding: 0.45rem 1.2rem;
+      border-radius: 2rem;
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+    .btn-reset:hover { background: var(--accent-soft); border-color: var(--accent-border); color: var(--accent); }
+
+    .quiz-item {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 1.1rem 1.2rem;
+      margin-bottom: 1rem;
+      transition: all var(--transition);
+    }
+    .quiz-q { display: flex; gap: 0.7rem; margin-bottom: 0.8rem; }
+    .q-index {
+      width: 1.9rem; height: 1.9rem;
+      display: grid; place-items: center;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 0.6rem;
+      font-weight: 800;
+      font-size: 0.8rem;
+      flex-shrink: 0;
+    }
+    .q-body { flex: 1; min-width: 0; }
+    .q-topic { font-size: 0.72rem; color: var(--text-muted); font-weight: 500; }
+    .q-text { font-weight: 600; font-size: 0.97rem; }
+
+    .options { display: flex; flex-direction: column; gap: 0.4rem; }
+    .opt {
+      display: flex; align-items: center; gap: 0.65rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 2rem;
+      padding: 0.5rem 0.95rem;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all var(--transition);
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .opt:hover { background: var(--surface-3); border-color: var(--accent-border); }
+    .opt .onum {
+      width: 1.5rem; height: 1.5rem;
+      display: grid; place-items: center;
+      background: var(--surface-3);
+      color: var(--text);
+      border-radius: 50%;
+      font-size: 0.75rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      transition: all var(--transition);
+    }
+    .opt.is-correct { background: var(--example-bg); border-color: var(--example-border); font-weight: 600; }
+    .opt.is-correct .onum { background: var(--success); color: #fff; }
+    .opt.is-wrong { background: #fdecea; border-color: #e6a29a; }
+    [data-theme="dark"] .opt.is-wrong { background: #3a1d1a; border-color: #8a3a32; }
+    .opt.is-wrong .onum { background: var(--danger); color: #fff; }
+
+    .btn-answer {
+      margin-top: 0.6rem;
+      background: var(--surface-3);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 0.8rem;
+      padding: 0.3rem 1rem;
+      border-radius: 2rem;
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+    .btn-answer:hover { background: var(--accent-soft); border-color: var(--accent-border); color: var(--accent); }
+    .answer-panel {
+      display: none;
+      margin-top: 0.8rem;
+      background: var(--note-bg);
+      border: 1px solid var(--note-border);
+      border-right: 3px solid #3b82f6;
+      border-radius: 0.8rem;
+      padding: 0.8rem 1rem;
+      font-size: 0.88rem;
+    }
+    .answer-panel.show { display: block; }
+    .answer-panel .correct-tag {
+      display: inline-block;
+      background: var(--success);
+      color: #fff;
+      font-weight: 800;
+      padding: 0.05rem 0.7rem;
+      border-radius: 2rem;
+      font-size: 0.75rem;
+      margin-left: 0.4rem;
+    }
+
+    /* ============ FOOTER ============ */
+    .site-footer {
+      max-width: 1280px;
+      margin: 2rem auto 0;
+      padding: 1.5rem 1.2rem;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+    .footer-brand {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-weight: 800;
+      color: var(--heading);
+      margin-bottom: 0.3rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .footer-brand span {
+      background: linear-gradient(135deg, var(--accent), #0a5b4f);
+      color: #fff;
+      padding: 0.15rem 0.6rem;
+      border-radius: 0.5rem;
+      font-size: 0.85rem;
+    }
+    .footer-line { color: var(--text-muted); font-size: 0.82rem; }
+    .footer-line a { font-weight: 600; }
+
+    /* ============ BACK TO TOP ============ */
+    .to-top {
+      position: fixed;
+      bottom: 1.5rem; left: 1.5rem;
+      width: 2.8rem; height: 2.8rem;
+      display: grid; place-items: center;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 1rem;
+      cursor: pointer;
+      font-size: 1.1rem;
+      box-shadow: 0 6px 18px -4px var(--accent);
+      opacity: 0; pointer-events: none;
+      transition: opacity var(--transition), transform var(--transition);
+      z-index: 90;
+    }
+    .to-top.visible { opacity: 1; pointer-events: auto; }
+    .to-top:hover { transform: translateY(-3px); }
+
+    /* ============ OVERLAY ============ */
+    .overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.45);
+      z-index: 150;
+      opacity: 0; pointer-events: none;
+      transition: opacity var(--transition);
+    }
+    .overlay.show { opacity: 1; pointer-events: auto; }
+
+    /* ============ RESPONSIVE ============ */
+    @media (max-width: 980px) {
+      :root { --header-h: 60px; }
+      .page-wrap { grid-template-columns: 1fr; padding: 1rem 0.9rem; gap: 1rem; }
+      .sidebar {
+        position: fixed;
+        top: 0; right: 0;
+        width: min(300px, 85vw);
+        height: 100vh;
+        max-height: 100vh;
+        border-radius: 0;
+        z-index: 200;
+        transform: translateX(105%);
+        transition: transform var(--transition);
+        padding-top: 1.2rem;
+        box-shadow: -10px 0 40px rgba(0,0,0,0.25);
+      }
+      .sidebar.open { transform: translateX(0); }
+      .menu-toggle { display: grid; }
+      .header-inner { padding: 0.6rem 0.9rem; }
+      .content-section { padding: 1.2rem 1rem; }
+      .section-head { gap: 0.6rem; }
+      .hero-stats { gap: 0.45rem; }
+      .stat-chip { font-size: 0.75rem; padding: 0.25rem 0.7rem; }
+    }
+    @media (max-width: 520px) {
+      body { font-size: 15px; }
+      .brand-text strong { font-size: 0.85rem; }
+      .brand-text small { font-size: 0.65rem; }
+      .brand-badge { width: 2.2rem; height: 2.2rem; font-size: 0.95rem; }
+      .icon-btn { width: 2.2rem; height: 2.2rem; font-size: 1rem; }
+      .section-num { width: 2rem; height: 2rem; font-size: 0.9rem; }
+      .quiz-item { padding: 0.9rem; }
+      .opt { font-size: 0.85rem; padding: 0.45rem 0.7rem; }
+      .to-top { width: 2.5rem; height: 2.5rem; font-size: 1rem; }
+      .hero h1 { font-size: 1.3rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+    }
+
+    /* Print */
+    @media print {
+      .site-header, .sidebar, .to-top, .overlay, .quiz-toolbar, .btn-answer, .icon-btn, .menu-toggle { display: none !important; }
+      .page-wrap { grid-template-columns: 1fr; padding: 0; }
+      .content-section, .hero { box-shadow: none; border: 1px solid #ccc; }
+      body { background: #fff; color: #000; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <div class="brand-badge">ف</div>
+        <div class="brand-text">
+          <strong>فیزیک دهم — فصل اول</strong>
+          <small>فیزیک و اندازه‌گیری</small>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button class="icon-btn" id="themeToggle" title="تغییر حالت روشن / تاریک" aria-label="تغییر تم">🌙</button>
+        <button class="icon-btn menu-toggle" id="menuToggle" title="منو" aria-label="منو">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="overlay" id="overlay"></div>
+
+  <div class="page-wrap">
+
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-title">دسترسی سریع</div>
+      <ul class="nav-list">
+        <li><a class="nav-link" href="#home" data-nav="home"><span class="nav-icon">⌂</span>صفحه اصلی</a></li>
+        <div class="nav-divider"></div>
+        <li><a class="nav-link" href="#lesson1" data-nav="lesson1"><span class="nav-icon">۱</span>فیزیک: دانش بنیادی</a></li>
+        <li><a class="nav-link" href="#lesson2" data-nav="lesson2"><span class="nav-icon">۲</span>مدل‌سازی</a></li>
+        <li><a class="nav-link" href="#lesson3" data-nav="lesson3"><span class="nav-icon">۳</span>کمیت‌های فیزیکی</a></li>
+        <li><a class="nav-link" href="#lesson4" data-nav="lesson4"><span class="nav-icon">۴</span>دستگاه یکاها (SI)</a></li>
+        <li><a class="nav-link" href="#lesson5" data-nav="lesson5"><span class="nav-icon">۵</span>دقت اندازه‌گیری</a></li>
+        <li><a class="nav-link" href="#lesson6" data-nav="lesson6"><span class="nav-icon">۶</span>چگالی</a></li>
+        <div class="nav-divider"></div>
+        <li><a class="nav-link" href="#formulas" data-nav="formulas"><span class="nav-icon">Σ</span>فرمول‌نامه</a></li>
+        <li><a class="nav-link" href="#quiz" data-nav="quiz"><span class="nav-icon">؟</span>تست‌های تعاملی</a></li>
+      </ul>
+    </aside>
+
+    <main class="main-content">
+
+      <section id="home" class="hero">
+        <div class="hero-badge">📘 جزوهٔ آموزشی تعاملی</div>
+        <h1>فصل اول: فیزیک و اندازه‌گیری</h1>
+        <p>درسنامهٔ کامل، مثال‌های حل‌شده، فرمول‌نامه و ۳۲ تست تعاملی با پاسخ تشریحی — بر مبنای کتاب درسی فیزیک (۱) پایهٔ دهم.</p>
+        <div class="hero-stats">
+          <div class="stat-chip"><span>📖</span>۶ درس</div>
+          <div class="stat-chip"><span>✏️</span>۹ مثال حل‌شده</div>
+          <div class="stat-chip"><span>Σ</span>فرمول‌نامه</div>
+          <div class="stat-chip"><span>🧪</span>۳۲ تست تعاملی</div>
+          <div class="stat-chip"><span>🖨️</span>قابل چاپ</div>
+        </div>
+      </section>
+
+      <section id="lesson1" class="content-section">
+        <div class="section-head">
+          <div class="section-num">۱</div>
+          <div style="flex:1;min-width:0;"><h2>فیزیک: دانش بنیادی</h2><small>علمی تجربی که پایهٔ همهٔ مهندسی‌ها و فناوری‌هاست</small></div>
+        </div>
+        <h3>فیزیک چه علمی است؟</h3>
+        <p>در فیزیک به هر چیزی که بتوان آن را اندازه گرفت — مانند طول، جرم، تندی، نیرو و زمان سقوط یک جسم — <strong>کمیت فیزیکی</strong> می‌گویند. فیزیک‌دانان پدیده‌های گوناگون طبیعت را مشاهده می‌کنند و می‌کوشند الگوها و نظم‌های خاصی میان آن‌ها بیابند. آنچه بیش از همه در پیشبرد و تکامل علم فیزیک نقش ایفا کرده، تفکر نقادانه و اندیشه‌ورزی فعال فیزیک‌دانان نسبت به پدیده‌هاست. در توصیف و توضیح پدیده‌ها نیز اغلب از نظریه، مدل و قانون فیزیکی استفاده می‌شود.</p>
+        <p>از آنجا که فیزیک علمی تجربی است، لازم است قوانین، مدل‌ها و نظریه‌های فیزیکی توسط آزمایش مورد آزمون قرار گیرند. مدل‌ها و نظریه‌ها همواره معتبر نیستند و ممکن است دستخوش تغییر شوند؛ نتایج آزمایش‌های جدید می‌تواند منجر به بازنگری یک مدل یا نظریه شود و حتی نظریه‌ای جدید جایگزین آن شود.</p>
+
+        <div class="info-card card-example">
+          <div class="ic-title">📌 مثالی از کتاب: تغییر مدل اتمی در طول زمان</div>
+          <p>دالتون (۱۸۰۷) مدل «توپ بیلیارد» را ارائه کرد؛ تامسون (۱۹۰۳) مدل «کیک کشمشی»؛ رادرفورد (۱۹۱۱) مدل «هسته‌ای»؛ بور (۱۹۱۳) مدل «سیاره‌ای» و سرانجام شرودینگر (۱۹۲۶) مدل «ابر الکترونی» را مطرح کرد. هر مدل با مشاهده‌ها و اطلاعات جدید اصلاح یا جایگزین شد — این آزمون‌پذیری و اصلاح‌پذیری، نقطهٔ قوت دانش فیزیک است.</p>
+        </div>
+
+        <div class="visual-card">
+          <div class="visual-title">🧩 مدل‌ها، نمایش ساده‌شدهٔ واقعیت‌اند</div>
+          <div class="visual-grid">
+            <div class="visual-item"><svg viewBox="0 0 180 105" role="img" aria-label="مدل توپ ساده"><circle cx="90" cy="50" r="34" fill="#e8a45b" stroke="#9b5b19" stroke-width="2"/><path d="M65 28 Q90 50 65 72 M115 28 Q90 50 115 72 M57 50 H123" fill="none" stroke="#9b5b19" stroke-width="2"/></svg><strong>جسم واقعی</strong><small>دارای اندازه، شکل و جزئیات</small></div>
+            <div class="visual-item"><svg viewBox="0 0 180 105" role="img" aria-label="مدل نقطه‌ای"><circle cx="90" cy="50" r="7" fill="#0e7c6b"/><path d="M90 20 V35 M90 65 V80 M60 50 H75 M105 50 H120" stroke="#0e7c6b" stroke-width="2" stroke-linecap="round"/><text x="90" y="98" text-anchor="middle" fill="currentColor" font-size="11">نقطهٔ نماینده</text></svg><strong>مدل ساده‌شده</strong><small>اندازهٔ جسم را نادیده می‌گیریم</small></div>
+          </div><div class="diagram-caption">در مدل‌سازی، جزئیات کم‌اهمیت حذف می‌شوند تا بررسی پدیده آسان‌تر شود.</div>
+        </div>
+
+        <div class="info-card card-note">
+          <div class="ic-title">💡 نکتهٔ مهم</div>
+          <p>فیزیک پایه و اساس تمامی مهندسی‌ها و فناوری‌هاست: فضاپیمای میان‌سیاره‌ای، شتاب‌دهندهٔ ذرات، سامانهٔ موقعیت‌یاب جهانی (GPS) که بر اساس نظریهٔ نسبیت اینشتین کار می‌کند، قطار مغناطیسی مگ‌لِو (دستاورد ابررساناها) و پردازنده‌های رایانه با میلیاردها ترانزیستور چند ده نانومتری، همگی بر شانهٔ قانون‌های فیزیک ساخته شده‌اند.</p>
+        </div>
+      </section>
+
+      <section id="lesson2" class="content-section">
+        <div class="section-head">
+          <div class="section-num">۲</div>
+          <div style="flex:1;min-width:0;"><h2>مدل‌سازی در فیزیک</h2><small>ساده‌سازی آرمانی پدیده‌ها برای امکان تحلیل</small></div>
+        </div>
+        <h3>مدل‌سازی چیست؟</h3>
+        <p>بررسی پدیده‌های واقعی فیزیک معمولاً با پیچیدگی همراه است. <strong>مدل‌سازی</strong> در فیزیک فرایندی است که طی آن یک پدیدهٔ فیزیکی آن‌قدر ساده و آرمانی می‌شود تا امکان بررسی و تحلیل آن فراهم شود.</p>
+
+        <div class="info-card card-example">
+          <div class="ic-title">🏀 مثال کتاب — حرکت توپ بسکتبال</div>
+          <p>در واقعیت، توپ کرهٔ کاملی نیست، در حین حرکت به دور خود می‌چرخد، باد و مقاومت هوا بر حرکت آن اثر می‌گذارند و وزن آن با تغییر فاصله از مرکز زمین تغییر می‌کند. برای ساده‌سازی:</p>
+          <ul>
+            <li>اندازه و شکل توپ را نادیده می‌گیریم و آن را جسم نقطه‌ای (ذره) در نظر می‌گیریم.</li>
+            <li>با فرض حرکت در خلأ، از مقاومت هوا و اثر باد صرف‌نظر می‌کنیم.</li>
+            <li>وزن توپ را در طول مسیر ثابت فرض می‌کنیم.</li>
+          </ul>
+        </div>
+
+        <div class="info-card card-warn">
+          <div class="ic-title">⚠️ هشدار مهم</div>
+          <p>هنگام مدل‌سازی باید اثرهای جزئی‌تر را نادیده بگیریم، نه اثرهای مهم و تعیین‌کننده را! برای مثال اگر به جای مقاومت هوا، نیروی جاذبهٔ زمین را نادیده بگیریم، مدل ما پیش‌بینی می‌کند توپی که به بالا پرتاب می‌شود در یک خط مستقیم بالا می‌رود — که آشکارا نادرست است.</p>
+        </div>
+
+        <div class="info-card card-note">
+          <div class="ic-title">💡 نکته</div>
+          <p>در فصل سوم (کار، انرژی و توان) از همین مدل‌سازی استفادهٔ زیادی خواهیم کرد: جسم را به‌صورت ذره در نظر می‌گیریم و تنها نیروهای افقیِ وارد بر آن (نیروی دست و اصطکاک) را بررسی می‌کنیم.</p>
+        </div>
+      </section>
+
+      <section id="lesson3" class="content-section">
+        <div class="section-head">
+          <div class="section-num">۳</div>
+          <div style="flex:1;min-width:0;"><h2>اندازه‌گیری و کمیت‌های فیزیکی</h2><small>کمیت نرده‌ای و کمیت برداری</small></div>
+        </div>
+        <h3>کمیت نرده‌ای</h3>
+        <p>برای بیان برخی کمیت‌های فیزیکی تنها از یک عدد و یکای مناسب آن استفاده می‌شود؛ این‌گونه کمیت‌ها <strong>کمیت نرده‌ای</strong> نامیده می‌شوند. مثال: جرم <bdi class="unit">65 kg</bdi> و طول قد <bdi class="unit">168 cm</bdi>. بیان یک کمیت فیزیکی بدون ذکر یکای آن معنایی ندارد.</p>
+        <p>نمونه‌های کمیت نرده‌ای: طول، جرم، زمان، دما، حجم، مسافت، انرژی و تندی.</p>
+
+        <h3>کمیت برداری</h3>
+        <p>برای بیان برخی دیگر از کمیت‌ها، افزون بر عدد و یکا، لازم است به جهت آن نیز اشاره کنیم؛ این دسته <strong>کمیت برداری</strong> نامیده می‌شوند. مثال: جابه‌جایی <bdi class="unit">42 km</bdi> به طرف شمال، یا سرعت متوسط <bdi class="unit">25 km/h</bdi> به طرف شمال.</p>
+        <p>نمونه‌های کمیت برداری: جابه‌جایی، سرعت، شتاب و نیرو.</p>
+        <div class="visual-card">
+          <div class="visual-title">➡️ فرق کمیت نرده‌ای و برداری در یک نگاه</div>
+          <div class="visual-grid">
+            <div class="visual-item"><svg viewBox="0 0 200 95" role="img" aria-label="مسافت بدون جهت"><path d="M22 53 H178" stroke="#0e7c6b" stroke-width="5" stroke-linecap="round"/><circle cx="22" cy="53" r="7" fill="#0e7c6b"/><circle cx="178" cy="53" r="7" fill="#0e7c6b"/><text x="100" y="30" text-anchor="middle" font-size="13" fill="currentColor">۵ متر</text><text x="100" y="83" text-anchor="middle" font-size="11" fill="currentColor">فقط اندازه</text></svg><strong>مسافت (نرده‌ای)</strong><small>عدد و یکا کافی است؛ جهت لازم نیست.</small></div>
+            <div class="visual-item"><svg viewBox="0 0 200 95" role="img" aria-label="جابه‌جایی دارای جهت"><path d="M22 53 H170" stroke="#2879c7" stroke-width="4" stroke-linecap="round"/><path d="M158 43 L174 53 L158 63" fill="none" stroke="#2879c7" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="22" cy="53" r="6" fill="#2879c7"/><text x="100" y="30" text-anchor="middle" font-size="13" fill="currentColor">۵ متر به راست</text><text x="100" y="83" text-anchor="middle" font-size="11" fill="currentColor">اندازه + جهت</text></svg><strong>جابه‌جایی (برداری)</strong><small>هم اندازه و هم جهت اهمیت دارد.</small></div>
+          </div>
+        </div>
+        <ul>
+          <li>برای نوشتن کمیت برداری مانند نیرو (<span class="vec">F<svg viewBox="0 0 10 6"><path d="M5 0 L9 5 L5 4 L1 5 Z"/></svg></span>) و شتاب (<span class="vec">a<svg viewBox="0 0 10 6"><path d="M5 0 L9 5 L5 4 L1 5 Z"/></svg></span>) از علامت پیکان بالای نماد استفاده می‌کنیم؛ اگر پیکان نیاید، فقط اندازهٔ کمیت (عدد و یکا) بیان شده است.</li>
+          <li>جمع و ضرب کمیت‌های برداری از قوانین جمع و ضرب بردارها تبعیت می‌کند.</li>
+        </ul>
+
+        <div class="info-card card-note">
+          <div class="ic-title">🎯 نکتهٔ کنکوری</div>
+          <p>«تندی» کمیت نرده‌ای است اما «سرعت» برداری است؛ «مسافت» نرده‌ای است اما «جابه‌جایی» برداری است. برای تشخیص، ببینید جهت بخشی ضروری از تعریف کمیت است یا نه — صرف اشاره به جهت در جمله کافی نیست.</p>
+        </div>
+      </section>
+
+      <section id="lesson4" class="content-section">
+        <div class="section-head">
+          <div class="section-num">۴</div>
+          <div style="flex:1;min-width:0;"><h2>دستگاه بین‌المللی یکاها (SI)</h2><small>کمیت‌های اصلی و فرعی، پیشوندها، نمادگذاری علمی و تبدیل یکاها</small></div>
+        </div>
+        <p>برای اندازه‌گیری‌های درست و قابل اطمینان به یکاهایی نیاز داریم که تغییر نکنند و در مکان‌های مختلف قابلیت بازتولید داشته باشند. دستگاه یکاهایی که از سال ۱۹۶۰ به‌طور رسمی <strong>دستگاه بین‌المللی (SI)</strong> نامیده می‌شود، در سال ۱۹۷۱ هفت کمیت را به عنوان کمیت‌های اصلی انتخاب کرد:</p>
+
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>کمیت اصلی</th><th>نام یکا</th><th>نماد یکا</th></tr></thead>
+            <tbody>
+              <tr><td>طول</td><td>متر</td><td>m</td></tr>
+              <tr><td>جرم</td><td>کیلوگرم</td><td>kg</td></tr>
+              <tr><td>زمان</td><td>ثانیه</td><td>s</td></tr>
+              <tr><td>دما</td><td>کلوین</td><td>K</td></tr>
+              <tr><td>مقدار ماده</td><td>مول</td><td>mol</td></tr>
+              <tr><td>جریان الکتریکی</td><td>آمپر</td><td>A</td></tr>
+              <tr><td>شدت روشنایی</td><td>کاندلا (شمع)</td><td>cd</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>سایر یکاها که برحسب یکاهای اصلی بیان می‌شوند <strong>یکاهای فرعی</strong> نامیده می‌شوند:</p>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>کمیت</th><th>یکای فرعی برحسب یکاهای اصلی</th><th>نام ویژه</th></tr></thead>
+            <tbody>
+              <tr><td>تندی و سرعت</td><td>m/s</td><td>—</td></tr>
+              <tr><td>شتاب</td><td>m/s²</td><td>—</td></tr>
+              <tr><td>نیرو</td><td>kg·m/s²</td><td>نیوتون (N)</td></tr>
+              <tr><td>فشار</td><td>kg/(m·s²)</td><td>پاسکال (Pa)</td></tr>
+              <tr><td>انرژی</td><td>kg·m²/s²</td><td>ژول (J)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>تعریف یکاهای اصلی (مطابق کتاب)</h3>
+        <ul>
+          <li><strong>متر:</strong> بر اساس آخرین توافق (۱۹۸۳)، یک متر برابر مسافتی است که نور در مدت <bdi class="unit">1/299792458</bdi> ثانیه در خلأ طی می‌کند.</li>
+          <li><strong>کیلوگرم:</strong> پیش‌تر بر اساس جرم استوانهٔ فلزی پلاتین–ایریدیوم (موزهٔ سور فرانسه) تعریف می‌شد؛ در بازنگری سال ۱۳۹۷ بر اساس ثابت پلانک بازتعریف شد.</li>
+          <li><strong>ثانیه:</strong> امروزه بر اساس ساعت‌های بسیار دقیق اتمی تعریف می‌شود که پس از چندین میلیون سال تنها یک ثانیه جلو یا عقب می‌افتند.</li>
+        </ul>
+
+        <h3>تبدیل یکاها (روش زنجیره‌ای)</h3>
+        <p>در حل مسئله‌های فیزیک اغلب باید یکای کمیتی را تغییر داد؛ این کار با ضریب تبدیل (نسبتی از یکاها که برابر عدد یک است) انجام می‌شود. چون <bdi class="unit">1 m = 100 cm</bdi> است، هر دو کسر <bdi class="unit">1m/100cm</bdi> و <bdi class="unit">100cm/1m</bdi> برابر ۱ هستند و می‌توان به‌عنوان ضریب تبدیل به کار برد.</p>
+        <p>برای یکاهای مساحت و حجم، ضریب تبدیل را توان‌دار می‌کنیم: چون <bdi class="unit">1 m = 100 cm</bdi> است، <bdi class="unit">1 m² = (100 cm)² = 10⁴ cm²</bdi> و <bdi class="unit">1 m³ = 10⁶ cm³</bdi>؛ به همین دلیل <bdi class="unit">1 L = 1000 cm³ = 10⁻³ m³</bdi> است. همچنین حجم جسم جامد با شکل نامنظم را با استوانه‌ی مدرج می‌سنجیم: حجم آب را پیش و پس از فرو بردن جسم می‌خوانیم و <bdi class="unit">V = V₂ − V₁</bdi> است.</p>
+
+        <div class="info-card card-example">
+          <div class="ic-title">✏️ مثال حل‌شده ۱ — تبدیل یکای سرعت</div>
+          <p>تندی <bdi class="unit">72 km/h</bdi> را بر حسب m/s بیان کنید.</p>
+          <p><strong>حل:</strong> <bdi class="unit">72 km/h = 72 × (1000 m)/(3600 s) = 20 m/s</bdi> ✓ — به‌طور کلی <bdi class="unit">km/h ÷ 3.6 = m/s</bdi>؛ مثال کتاب: <bdi class="unit">36 km/h = 10 m/s</bdi></p>
+        </div>
+
+        <div class="info-card card-example">
+          <div class="ic-title">✏️ مثال حل‌شده ۲ — تبدیل یکای حجم و آهنگ</div>
+          <p>از شیلنگی آب با آهنگ <bdi class="unit">125 cm³/s</bdi> خارج می‌شود. این آهنگ را بر حسب لیتر بر دقیقه بیان کنید. (هر لیتر معادل <bdi class="unit">1000 cm³</bdi> است)</p>
+          <p><strong>حل:</strong> <bdi class="unit">125 cm³/s × (1 L/1000 cm³) × (60 s/1 min) = 7.5 L/min</bdi> ✓ (تمرین کتاب)</p>
+        </div>
+
+        <h3>سازگاری یکاها</h3>
+        <p>هنگام جایگذاری عددها در رابطه‌ها باید به سازگاری یکاها در دو طرف توجه کنیم؛ اگر بخواهیم حاصل برحسب یکاهای SI باشد، یکای کمیت‌های داده‌شده را نیز باید به SI تبدیل کنیم.</p>
+
+        <div class="info-card card-example">
+          <div class="ic-title">✏️ مثال حل‌شده ۳ — قانون دوم نیوتون با یکاهای سازگار</div>
+          <p>اگر جرم جسمی <bdi class="unit">325 g</bdi> و شتاب آن <bdi class="unit">1.75 m/s²</bdi> باشد، اندازهٔ نیروی وارد بر جسم چقدر است؟</p>
+          <p><strong>حل:</strong> ابتدا جرم را به یکای SI تبدیل می‌کنیم: <bdi class="unit">m = 325 g = 0.325 kg</bdi> ← <bdi class="unit">F = ma = 0.325 × 1.75 = 0.569 N</bdi> ✓ (مثال کتاب) — اگر یکای جرم را تبدیل نمی‌کردیم، پاسخ نادرست <bdi class="unit">568.75</bdi> به دست می‌آمد.</p>
+        </div>
+
+        <h3>پیشوندهای یکاها</h3>
+        <p>هرگاه با اندازه‌های بسیار بزرگ‌تر یا بسیار کوچک‌تر از یکای اصلی مواجه شویم، از پیشوندها استفاده می‌کنیم. هر پیشوند توان معینی از ۱۰ را به‌صورت عامل ضرب نشان می‌دهد:</p>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>پیشوند</th><th>نماد</th><th>ضریب</th><th>پیشوند</th><th>نماد</th><th>ضریب</th></tr></thead>
+            <tbody>
+              <tr><td>گیگا</td><td>G</td><td>10⁹</td><td>میلی</td><td>m</td><td>10⁻³</td></tr>
+              <tr><td>مگا</td><td>M</td><td>10⁶</td><td>میکرو</td><td>µ</td><td>10⁻⁶</td></tr>
+              <tr><td>کیلو</td><td>k</td><td>10³</td><td>نانو</td><td>n</td><td>10⁻⁹</td></tr>
+              <tr><td>سانتی</td><td>c</td><td>10⁻²</td><td>پیکو</td><td>p</td><td>10⁻¹²</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size:0.85rem;color:var(--text-muted);">پیشوندهای بزرگ‌تر (ترا <bdi class="unit">10¹²</bdi>، پتا <bdi class="unit">10¹⁵</bdi>، اگزا، زتا، یوتا <bdi class="unit">10²⁴</bdi>) و کوچک‌تر (فمتو، اتو، زپتو، یوکتو <bdi class="unit">10⁻²⁴</bdi>) نیز تعریف شده‌اند. وقتی پیشوندی به یکایی افزوده می‌شود، آن یکا در ضریب مربوطه ضرب می‌شود؛ مثلاً یک میکرومتر <bdi class="unit">1 µm = 10⁻⁶ m</bdi> و سه مگاوات <bdi class="unit">3 MW = 3×10⁶ W</bdi> است.</p>
+
+        <h3>نمادگذاری علمی</h3>
+        <p>برای نوشتن مقدارهای خیلی بزرگ یا خیلی کوچک از نمادگذاری علمی استفاده می‌شود. اندازهٔ هر کمیت در این روش سه قسمت دارد: عددی از ۱ تا ۱۰، ضرب در توان صحیحی از ۱۰، و یکای کمیت:</p>
+        <div class="formula">a × 10ⁿ &nbsp;(1 ≤ a &lt; 10)&nbsp; + یکای کمیت</div>
+        <p>نمونه‌های کتاب: تندی نور <bdi class="unit">3.00×10⁸ m/s</bdi>؛ قطر موی انسان <bdi class="unit">8.01×10⁻⁶ m</bdi>؛ حجم یک بشکه نفت <bdi class="unit">1.59×10² L</bdi>.</p>
+
+        <div class="info-card card-example">
+          <div class="ic-title">✏️ مثال حل‌شده ۴ — نمادگذاری علمی و پیشوندها</div>
+          <p>مقدار بار الکتریکی الکترون <bdi class="unit">160×10⁻¹⁵ μC</bdi> است. این بار را بر حسب کولن و با نمادگذاری علمی بنویسید.</p>
+          <p><strong>حل:</strong> پیشوند میکرو برابر <bdi class="unit">10⁻⁶</bdi> است: <bdi class="unit">160×10⁻¹⁵ μC = 160×10⁻²¹ C = 1.60×10⁻¹⁹ C</bdi> ✓ (مثال کتاب)</p>
+        </div>
+
+        <div class="info-card card-example">
+          <div class="ic-title">✏️ مثال حل‌شده ۵ — نمادگذاری علمی</div>
+          <p>جرم یک زنبور عسل <bdi class="unit">0.00015 kg</bdi> است. این جرم را به‌صورت نمادگذاری علمی درست بیان کنید.</p>
+          <p><strong>حل:</strong> ممیز را جابه‌جا می‌کنیم تا عددی بین ۱ و ۱۰ به دست آید: <bdi class="unit">0.00015 kg = 1.5×10⁻⁴ kg</bdi> ✓ (پرسش کتاب — گزینهٔ <bdi class="unit">15×10⁻⁵</bdi> نادرست است چون عدد باید بین ۱ و ۱۰ باشد)</p>
+        </div>
+
+        <div class="info-card card-note">
+          <div class="ic-title">💡 خوب است بدانید — بیت و بایت</div>
+          <p>یکای پایهٔ اطلاعات در رایانه، بیت است که فقط دو مقدار ۰ و ۱ دارد. هر ۸ بیت یک بایت است. برخلاف پیشوندهای SI که هر کیلو برابر <bdi class="unit">10³</bdi> است، در مبنای دوتایی هر کیلو برابر <bdi class="unit">2¹⁰ = 1024</bdi> است؛ به همین دلیل ظرفیت حافظه‌ها برحسب کیلوبایت، مگابایت و گیگابایت با ضرایب <bdi class="unit">1024</bdi> پله‌پله گزارش می‌شود. (جزء ارزشیابی نیست)</p>
+        </div>
+      </section>
+
+      <section id="lesson5" class="content-section">
+        <div class="section-head">
+          <div class="section-num">۵</div>
+          <div style="flex:1;min-width:0;"><h2>اندازه‌گیری و دقت وسیله‌های اندازه‌گیری</h2><small>دقت، درستی، خطا و رقم‌های بامعنا</small></div>
+        </div>
+        <h3>دقت وسیله‌های اندازه‌گیری</h3>
+        <p>در اندازه‌گیری کمیت‌های فیزیکی، قطعیت وجود ندارد و همواره مقداری خطا هست؛ با انتخاب وسیلهٔ دقیق و روش صحیح تنها می‌توان خطا را کاهش داد، ولی هیچ‌گاه نمی‌توان آن را به صفر رساند.</p>
+        <ul>
+          <li><strong>دقت ابزارهای مدرج:</strong> برابر کمینهٔ درجه‌بندی آن ابزار است؛ مثلاً دقت خط‌کشی که تا میلی‌متر مدرج شده، <bdi class="unit">1 mm</bdi> است.</li>
+          <li><strong>دقت ابزارهای رقمی (دیجیتال):</strong> برابر یک واحد از آخرین رقمی است که آن ابزار می‌خواند؛ مثلاً اگر دماسنج رقمی <bdi class="unit">0.2 °C</bdi> نشان دهد که آخرین رقمش یک‌دهم درجه است، دقت آن <bdi class="unit">0.1 °C</bdi> است.</li>
+        </ul>
+
+        <h3>عوامل مؤثر بر دقت اندازه‌گیری</h3>
+        <ol>
+          <li><strong>دقت وسیلهٔ اندازه‌گیری:</strong> خط‌کش میلی‌متری دقیق‌تر از خط‌کش سانتی‌متری است.</li>
+          <li><strong>مهارت شخص آزمایشگر:</strong> نحوهٔ خواندن نتیجه مهم است؛ در خواندن مدرج‌ها باید از منظر عمود نگاه کرد تا «خطای منظر» (اختلاف منظر) خطا را افزایش ندهد.</li>
+          <li><strong>تعداد دفعات اندازه‌گیری:</strong> برای کاهش خطا، اندازه‌گیری را چند بار تکرار می‌کنند و میانگین عددها را گزارش می‌کنند؛ اگر یک یا دو عدد اختلاف زیادی با بقیه داشته باشد (عدد پرت)، در میانگین‌گیری به حساب نمی‌آید.</li>
+        </ol>
+
+        <div class="info-card card-example">
+          <div class="ic-title">✏️ مثال حل‌شده ۶ — تکرار اندازه‌گیری و میانگین</div>
+          <p>طول یک میله چهار بار اندازه‌گیری می‌شود: <bdi class="unit">12.1 cm</bdi>، <bdi class="unit">12.3 cm</bdi>، <bdi class="unit">12.2 cm</bdi> و <bdi class="unit">12.9 cm</bdi>. نتیجهٔ گزارش‌شده چیست؟</p>
+          <p><strong>حل:</strong> عدد <bdi class="unit">12.9</bdi> اختلاف زیادی با بقیه دارد (عدد پرت) و کنار گذاشته می‌شود ← میانگین سه عدد دیگر: <bdi class="unit">(12.1 + 12.3 + 12.2)/3 = 36.6/3 = 12.2 cm</bdi> ✓</p>
+        </div>
+
+        <h3>تفاوت دقت و درستی</h3>
+        <p>دقت همواره به معنای صحت و درستی نیست: یک ساعت رقمی که زمان را تا ثانیه اعلام می‌کند بسیار دقیق است، ولی اگر چند دقیقه آهسته کار کند، مقداری که نشان می‌دهد درست نیست. از سوی دیگر، یک ساعت قدیمی ممکن است زمان صحیح را نشان دهد (درست) ولی اگر عقربهٔ ثانیه‌شمار نداشته باشد، دقت آن کم است. اندازه‌گیری‌های باکیفیت، هم دقیق‌اند و هم درست.</p>
+
+        <div class="info-card card-example">
+          <div class="ic-title">🎯 مثال دارت (مطابق کتاب)</div>
+          <p>در بازی پرتاب دارت: حالت (الف) هم پرتاب‌ها دقیق‌اند (به هم نزدیک) و هم درست (در مرکز هدف)؛ حالت (ب) فقط دقیق است (پرتاب‌ها به هم نزدیک اما دور از مرکز)؛ حالت (پ) نه دقت دارد و نه درستی (پرتاب‌ها پراکنده و دور از مرکز).</p>
+          <div class="visual-card">
+            <div class="visual-title">🎯 شکل دوبعدی: دقت در برابر درستی</div>
+            <div class="visual-grid">
+              <div class="visual-item"><svg viewBox="0 0 120 120" role="img" aria-label="دارت دقیق و درست"><circle cx="60" cy="60" r="45" fill="none" stroke="#94a3b8" stroke-width="2"/><circle cx="60" cy="60" r="29" fill="none" stroke="#94a3b8" stroke-width="2"/><circle cx="60" cy="60" r="13" fill="#e9b949" stroke="#b7791f" stroke-width="2"/><g fill="#0e7c6b"><circle cx="58" cy="58" r="4"/><circle cx="63" cy="61" r="4"/><circle cx="60" cy="64" r="4"/></g></svg><strong>الف) دقیق و درست</strong><small>نقاط نزدیک هم و نزدیک مرکزند.</small></div>
+              <div class="visual-item"><svg viewBox="0 0 120 120" role="img" aria-label="دارت دقیق ولی نادرست"><circle cx="60" cy="60" r="45" fill="none" stroke="#94a3b8" stroke-width="2"/><circle cx="60" cy="60" r="29" fill="none" stroke="#94a3b8" stroke-width="2"/><circle cx="60" cy="60" r="13" fill="#e9b949" stroke="#b7791f" stroke-width="2"/><g fill="#2879c7"><circle cx="87" cy="35" r="4"/><circle cx="91" cy="38" r="4"/><circle cx="85" cy="41" r="4"/></g></svg><strong>ب) دقیق، نه درست</strong><small>نقاط نزدیک هم‌اند اما از مرکز دورند.</small></div>
+              <div class="visual-item"><svg viewBox="0 0 120 120" role="img" aria-label="دارت نه دقیق و نه درست"><circle cx="60" cy="60" r="45" fill="none" stroke="#94a3b8" stroke-width="2"/><circle cx="60" cy="60" r="29" fill="none" stroke="#94a3b8" stroke-width="2"/><circle cx="60" cy="60" r="13" fill="#e9b949" stroke="#b7791f" stroke-width="2"/><g fill="#c0392b"><circle cx="32" cy="39" r="4"/><circle cx="80" cy="26" r="4"/><circle cx="77" cy="79" r="4"/><circle cx="42" cy="88" r="4"/></g></svg><strong>پ) نه دقیق، نه درست</strong><small>نقاط پراکنده و دور از مرکزند.</small></div>
+            </div>
+          </div>
+        </div>
+
+        <h3>رقم‌های بامعنا</h3>
+        <p style="color:var(--text-muted);font-size:0.9rem;">این بخش تکمیلی و خارج از ارزشیابی کتاب است و در کادر «خوب است بدانید» آمده است.</p>
+        <p>رقم‌هایی را که پس از اندازه‌گیری ثبت می‌کنیم <strong>رقم‌های بامعنا</strong> می‌گویند:</p>
+        <ul>
+          <li>تمام عددهای غیرصفر بامعنا هستند؛ تمام صفرهای بین آن‌ها نیز بامعنا هستند.</li>
+          <li>صفرهای سمت چپِ عدد بامعنا نیستند: <bdi class="unit">0.000907</bdi> سه رقم بامعنا دارد.</li>
+          <li>در ضرب و تقسیم، تعداد رقم‌های بامعنای نتیجه برابر کمترین رقم بامعنا در داده‌هاست: حاصل <bdi class="unit">3.1415 × 2.923 × 7.12</bdi> هرچند <bdi class="unit">65.38</bdi> می‌شود، باید با سه رقم بامعنا یعنی <bdi class="unit">65.4</bdi> بیان شود.</li>
+          <li>در جمع و تفریق آنچه اهمیت دارد محل ممیز است نه تعداد رقم‌ها: حاصل <bdi class="unit">245.41 + 4.8</bdi> باید <bdi class="unit">250.2</bdi> بیان شود.</li>
+        </ul>
+        <div class="info-card card-note">
+          <div class="ic-title">💡 نکته</div>
+          <p>در کتاب فیزیک (۱) برای سادگی، تمام صفرهای سمت راست اعداد بامعنا فرض شده‌اند؛ یعنی <bdi class="unit">230 mm</bdi> را سه رقم بامعنا می‌گیریم. همچنین اگر بخواهیم تعداد رقم بامعنا را دقیق بیان کنیم، از نمادگذاری علمی کمک می‌گیریم: <bdi class="unit">2.3×10²</bdi> دو رقم و <bdi class="unit">2.30×10²</bdi> سه رقم بامعنا است.</p>
+        </div>
+      </section>
+
+      <section id="lesson6" class="content-section">
+        <div class="section-head">
+          <div class="section-num">۶</div>
+          <div style="flex:1;min-width:0;"><h2>چگالی</h2><small>ویژگی مهم مواد و کاربردهای آن</small></div>
+        </div>
+        <h3>تعریف چگالی</h3>
+        <p>چگالی یکی از ویژگی‌های مهم هر ماده است که کاربردهای گوناگونی دارد. اگر مادهٔ همگنی جرم m و حجم V داشته باشد، چگالی آن:</p>
+        <div class="formula">ρ = m / V</div>
+        <div class="visual-card">
+          <div class="visual-title">🧊 چگالی یعنی چه؟ جرم در حجم مشخص</div>
+          <div class="visual-grid">
+            <div class="visual-item"><svg viewBox="0 0 180 115" role="img" aria-label="مکعب با ذرات پراکنده"><path d="M40 35 L90 12 L140 35 L90 59 Z" fill="#b9e4f5" stroke="#2879c7" stroke-width="2"/><path d="M40 35 V82 L90 106 V59 Z" fill="#d8f1fb" stroke="#2879c7" stroke-width="2"/><path d="M140 35 V82 L90 106 V59 Z" fill="#a6d8ee" stroke="#2879c7" stroke-width="2"/><g fill="#2879c7"><circle cx="63" cy="48" r="3"/><circle cx="91" cy="31" r="3"/><circle cx="112" cy="46" r="3"/><circle cx="68" cy="72" r="3"/><circle cx="99" cy="78" r="3"/></g></svg><strong>چگالی کمتر</strong><small>در حجم برابر، جرم کمتری دارد.</small></div>
+            <div class="visual-item"><svg viewBox="0 0 180 115" role="img" aria-label="مکعب با ذرات متراکم"><path d="M40 35 L90 12 L140 35 L90 59 Z" fill="#a9ddca" stroke="#0e7c6b" stroke-width="2"/><path d="M40 35 V82 L90 106 V59 Z" fill="#cceee2" stroke="#0e7c6b" stroke-width="2"/><path d="M140 35 V82 L90 106 V59 Z" fill="#8bd0b7" stroke="#0e7c6b" stroke-width="2"/><g fill="#0e7c6b"><circle cx="60" cy="40" r="3"/><circle cx="77" cy="31" r="3"/><circle cx="93" cy="24" r="3"/><circle cx="111" cy="32" r="3"/><circle cx="126" cy="40" r="3"/><circle cx="58" cy="59" r="3"/><circle cx="75" cy="67" r="3"/><circle cx="93" cy="70" r="3"/><circle cx="111" cy="58" r="3"/><circle cx="76" cy="86" r="3"/><circle cx="96" cy="91" r="3"/><circle cx="118" cy="75" r="3"/></g></svg><strong>چگالی بیشتر</strong><small>در حجم برابر، جرم بیشتری دارد.</small></div>
+          </div><div class="diagram-caption">برای دو جسم هم‌حجم، جسمی که جرم بیشتری دارد چگال‌تر است؛ رابطهٔ اصلی: ρ = m/V.</div>
+        </div>
+        <p>یکای چگالی در SI کیلوگرم بر متر مکعب (<bdi class="unit">kg/m³</bdi>) است. یکای متداول دیگر آن <bdi class="unit">g/cm³</bdi> است که با یکای SI این‌گونه مرتبط است:</p>
+        <div class="formula">1 g/cm³ = 1000 kg/m³</div>
+
+        <div class="info-card card-example">
+          <div class="ic-title">✏️ مثال حل‌شده ۷ — اثبات رابطهٔ یکاها</div>
+          <p>به روش تبدیل زنجیره‌ای نشان دهید <bdi class="unit">1 g/cm³ = 1000 kg/m³</bdi> است.</p>
+          <p><strong>حل:</strong> <bdi class="unit">1 g/cm³ = (10⁻³ kg)/(10⁻⁶ m³) = 10⁻³⁺⁶ kg/m³ = 10³ kg/m³</bdi> ✓ (تمرین کتاب)</p>
+        </div>
+
+        <h3>چگالی برخی مواد</h3>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>ماده</th><th>چگالی (kg/m³)</th><th>ماده</th><th>چگالی (kg/m³)</th></tr></thead>
+            <tbody>
+              <tr><td>یخ</td><td>0.917×10³</td><td>جیوه</td><td>13.6×10³</td></tr>
+              <tr><td>آب</td><td>1.00×10³</td><td>سرب</td><td>11.3×10³</td></tr>
+              <tr><td>آلومینیم</td><td>2.70×10³</td><td>اورانیوم</td><td>19.1×10³</td></tr>
+              <tr><td>آهن</td><td>7.86×10³</td><td>طلا</td><td>19.3×10³</td></tr>
+              <tr><td>مس</td><td>8.92×10³</td><td>پلاتین</td><td>21.4×10³</td></tr>
+              <tr><td>نقره</td><td>10.5×10³</td><td>هوا</td><td>1.29</td></tr>
+              <tr><td>اتیل الکل</td><td>0.806×10³</td><td>هلیوم</td><td>0.179</td></tr>
+              <tr><td>بنزن</td><td>0.879×10³</td><td>هیدروژن</td><td>0.0899</td></tr>
+            </tbody>
+          </table>
+          <div class="table-caption">داده‌های جدول در دمای <bdi class="unit">0 °C</bdi> و فشار یک اتمسفر گزارش شده‌اند (جدول ۱–۸ کتاب).</div>
+        </div>
+
+        <div class="info-card card-example">
+          <div class="ic-title">✏️ مثال حل‌شده ۸ — محاسبهٔ جرم از چگالی (مثال کتاب)</div>
+          <p>فلز اُسمیم با چگالی <bdi class="unit">22.5×10³ kg/m³</bdi> یکی از چگال‌ترین مواد یافت‌شده روی زمین است. جرم قطعه‌ای از این ماده به حجم <bdi class="unit">23.0 cm³</bdi> چند کیلوگرم است؟</p>
+          <p><strong>حل:</strong> حجم را به یکای SI تبدیل می‌کنیم: <bdi class="unit">23.0 cm³ = 23.0×10⁻⁶ m³</bdi> ← <bdi class="unit">m = ρV = (22.5×10³ kg/m³) × (23.0×10⁻⁶ m³) = 0.5175 kg ≈ 0.518 kg</bdi> ✓ — یعنی قطعهٔ مکعبی به اندازهٔ یک قوطی کبریت از اسمیم، کمی بیشتر از نیم کیلوگرم جرم دارد.</p>
+        </div>
+
+        <div class="info-card card-example">
+          <div class="ic-title">✏️ مثال حل‌شده ۹ — چگالی خون و تعیین جرم</div>
+          <p>حجم خون در گردش یک فرد بالغ می‌تواند <bdi class="unit">4.70 L</bdi> تا <bdi class="unit">5.50 L</bdi> باشد. جرم <bdi class="unit">4.70 L</bdi> خون چند کیلوگرم است؟ چگالی خون را <bdi class="unit">1.05 g/cm³</bdi> بگیرید.</p>
+          <p><strong>حل:</strong> <bdi class="unit">4.70 L = 4700 cm³</bdi> ← <bdi class="unit">m = ρV = 1.05 × 4700 = 4935 g = 4.935 kg ≈ 4.94 kg</bdi> ✓ (تمرین کتاب — با سه رقم بامعنا، مطابق قاعدهٔ همین فصل)</p>
+        </div>
+
+        <h3>کاربردهای چگالی</h3>
+        <p>با توجه به دستورالعمل مؤسسهٔ استاندارد و تحقیقات صنعتی ایران، چگالی شیرخام تحویلی در کارخانه‌های شیر و لبنیات در دمای <bdi class="unit">15 °C</bdi> باید بین <bdi class="unit">1029</bdi> تا <bdi class="unit">1032 kg/m³</bdi> باشد — چگالی، شاخص کنترل کیفیت است. کاهش چگالی استخوان (پوکی استخوان) علت اصلی شکستگی مفصل ران و لگن در بیشتر افراد مسن است و با چگالی‌سنجی استخوان تشخیص داده می‌شود.</p>
+
+        <div class="info-card card-note">
+          <div class="ic-title">🍊 تفسیر پرسش کتاب — پرتقال و آب</div>
+          <p>پرتقال با پوست روی آب می‌ماند و بدون پوست فرو می‌رود؛ چرا؟ چگالی «پرتقال با پوست» (به‌خاطر بافت اسفنجی پوست) کمتر از آب است و چگالی «پرتقال بدون پوست» بیشتر از آب. پس شناور ماندن یا فرو رفتن جسم را چگالی تعیین می‌کند، نه جرم یا سنگین‌تر بودن آن.</p>
+        </div>
+      </section>
+
+      <section id="formulas" class="content-section">
+        <div class="section-head">
+          <div class="section-num">Σ</div>
+          <div style="flex:1;min-width:0;"><h2>فرمول‌نامهٔ جمع‌بندی فصل</h2><small>همهٔ روابط و قواعد مهم فصل اول در یک نگاه</small></div>
+        </div>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>مفهوم</th><th>رابطه / قاعده</th><th>نکته</th></tr></thead>
+            <tbody>
+              <tr><td>چگالی</td><td>ρ = m/V</td><td>1 g/cm³ = 1000 kg/m³</td></tr>
+              <tr><td>نیرو (قانون دوم نیوتون)</td><td>F = ma</td><td>1 N = 1 kg·m/s²</td></tr>
+              <tr><td>تبدیل سرعت</td><td>km/h ÷ 3.6 = m/s</td><td>36 km/h = 10 m/s</td></tr>
+              <tr><td>نمادگذاری علمی</td><td>a×10ⁿ (1≤a&lt;10)</td><td>عدد + توان ۱۰ + یکا</td></tr>
+              <tr><td>دقت ابزار مدرج</td><td>کمینهٔ درجه‌بندی</td><td>خط‌کش میلی‌متری: 1 mm</td></tr>
+              <tr><td>دقت ابزار رقمی</td><td>یک واحد از آخرین رقم</td><td>نمایش 0.2 °C ← دقت 0.1 °C</td></tr>
+              <tr><td>رقم‌های بامعنا (ضرب/تقسیم)</td><td>برابر کمترین داده</td><td>2.9×7.12 → دو رقم</td></tr>
+              <tr><td>رقم‌های بامعنا (جمع/تفریق)</td><td>توجه به محل ممیز</td><td>245.41+4.8 = 250.2</td></tr>
+              <tr><td>پیشوندهای پرکاربرد</td><td>G=10⁹، M=10⁶، k=10³، c=10⁻²، m=10⁻³، µ=10⁻⁶، n=10⁻⁹</td><td>—</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="info-card card-note" style="margin-top:1.2rem;">
+          <div class="ic-title">📐 اعداد و یکاهای پرکاربرد</div>
+          <p>کمیت‌های اصلی SI: طول (متر)، جرم (کیلوگرم)، زمان (ثانیه)، دما (کلوین)، مقدار ماده (مول)، جریان الکتریکی (آمپر)، شدت روشنایی (کاندلا) • <bdi class="unit">1 L = 10⁻³ m³ = 1000 cm³</bdi> • <bdi class="unit">1 h = 3600 s</bdi> • یکای نجومی <bdi class="unit">1 AU ≈ 1.50×10¹¹ m</bdi> • چگالی آب <bdi class="unit">1000 kg/m³</bdi>، جیوه <bdi class="unit">13.6×10³ kg/m³</bdi>، هوا <bdi class="unit">1.29 kg/m³</bdi></p>
+        </div>
+      </section>
+
+      <section id="quiz" class="content-section">
+        <div class="section-head">
+          <div class="section-num">؟</div>
+          <div style="flex:1;min-width:0;"><h2>تست‌های تعاملی فصل اول</h2><small>۳۲ تست چهارگزینه‌ای آموزشی — با کلیک روی هر گزینه، پاسخ و راه‌حل کامل نمایش داده می‌شود</small></div>
+        </div>
+        <div class="quiz-toolbar">
+          <div class="score-pill" id="scorePill">پاسخ صحیح: ۰ از ۳۲</div>
+          <button class="btn-reset" id="resetQuiz">شروع دوباره</button>
+        </div>
+        <div id="quizList"></div>
+      </section>
+
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-line" style="margin-top:0.4rem;font-size:0.75rem;">بر مبنای کتاب درسی فیزیک (۱) پایهٔ دهم — فصل اول (فیزیک و اندازه‌گیری)</div>
+  </footer>
+
+  <button class="to-top" id="toTop" title="بازگشت به بالا" aria-label="بازگشت به بالا">↑</button>
+
+  <script>
+    /* ============ THEME ============ */
+    const rootEl = document.documentElement;
+    const themeBtn = document.getElementById('themeToggle');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+
+    function applyTheme(mode) {
+      if (mode === 'dark') {
+        rootEl.setAttribute('data-theme', 'dark');
+        themeBtn.textContent = '☀️';
+      } else {
+        rootEl.removeAttribute('data-theme');
+        themeBtn.textContent = '🌙';
+      }
+      try { localStorage.setItem('phys-theme', mode); } catch (e) {}
+    }
+
+    (function initTheme() {
+      let saved = null;
+      try { saved = localStorage.getItem('phys-theme'); } catch (e) {}
+      if (saved === 'dark') applyTheme('dark');
+      else if (saved === 'light') applyTheme('light');
+      else applyTheme(prefersDark.matches ? 'dark' : 'light');
+    })();
+
+    themeBtn.addEventListener('click', () => {
+      const isDark = rootEl.getAttribute('data-theme') === 'dark';
+      applyTheme(isDark ? 'light' : 'dark');
+    });
+
+    prefersDark.addEventListener('change', (e) => {
+      let saved = null;
+      try { saved = localStorage.getItem('phys-theme'); } catch (err) {}
+      if (!saved) applyTheme(e.matches ? 'dark' : 'light');
+    });
+
+    /* ============ MOBILE MENU ============ */
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
+    const menuToggle = document.getElementById('menuToggle');
+
+    function openMenu() {
+      sidebar.classList.add('open');
+      overlay.classList.add('show');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu() {
+      sidebar.classList.remove('open');
+      overlay.classList.remove('show');
+      document.body.style.overflow = '';
+    }
+    menuToggle.addEventListener('click', () => {
+      if (sidebar.classList.contains('open')) closeMenu();
+      else openMenu();
+    });
+    overlay.addEventListener('click', closeMenu);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMenu();
+    });
+
+    /* ============ NAV LINKS ============ */
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('section[id]');
+    const headerHeight = () => {
+      const h = document.querySelector('.site-header');
+      return h ? h.offsetHeight : 64;
+    };
+
+    function setActiveNav(id) {
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.dataset.nav === id);
+      });
+    }
+
+    function smoothScrollTo(targetId) {
+      const target = document.getElementById(targetId);
+      if (!target) return;
+      if (window.innerWidth <= 980) closeMenu();
+      const offset = headerHeight() + 12;
+      const rect = target.getBoundingClientRect();
+      const targetY = rect.top + window.pageYOffset - offset;
+      window.scrollTo({ top: Math.max(0, targetY), behavior: 'smooth' });
+    }
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const nav = link.dataset.nav;
+        if (!nav) return;
+        if (window.innerWidth <= 980) closeMenu();
+        smoothScrollTo(nav);
+        setActiveNav(nav);
+        if (history.pushState) history.pushState(null, null, '#' + nav);
+      });
+    });
+
+    const observerOptions = {
+      rootMargin: `-${parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-h')) || 64}px 0px -60% 0px`,
+      threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          const match = [...navLinks].find(l => l.dataset.nav === id);
+          if (match) setActiveNav(match.dataset.nav);
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach(sec => observer.observe(sec));
+
+    /* ============ BACK TO TOP ============ */
+    const toTop = document.getElementById('toTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 400) toTop.classList.add('visible');
+      else toTop.classList.remove('visible');
+    }, { passive: true });
+    toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    /* ============ QUIZ DATA ============ */
+    const questions = [
+      { topic: "فیزیک: دانش بنیادی", question: "کدام گزینه دربارهٔ علم فیزیک درست است؟", options: ["نظریه‌های فیزیکی هرگز تغییر نمی‌کنند", "فیزیک علمی تجربی است و نظریه‌های آن باید با آزمایش آزمون شوند", "در فیزیک مشاهدهٔ پدیده‌ها اهمیتی ندارد", "مدل‌های فیزیکی باید همهٔ جزئیات واقعی پدیده را در بر بگیرند"], correct: 1, explanation: "فیزیک علمی تجربی است و نظریه‌ها و مدل‌های آن باید با آزمایش آزمون شوند و ممکن است در پرتو شواهد جدید تغییر کنند." },
+      { topic: "مدل‌سازی", question: "در مدل‌سازی حرکت یک توپ پرتاب‌شده، کدام‌یک از فرض‌های زیر نادرست است؟", options: ["در نظر گرفتن توپ به‌صورت جسم نقطه‌ای", "صرف‌نظر کردن از مقاومت هوا و باد", "نادیده گرفتن نیروی جاذبهٔ زمین", "ثابت فرض کردن وزن توپ در طول مسیر"], correct: 2, explanation: "نادیده گرفتن نیروی جاذبهٔ زمین (نیروی وزن) یک فرض نادرست است؛ زیرا اثر آن تعیین‌کننده است." },
+      { topic: "مدل‌سازی", question: "هدف اصلی مدل‌سازی در فیزیک چیست؟", options: ["افزودن جزئیات واقعی پدیده به تحلیل", "ساده و آرمانی کردن پدیده تا امکان بررسی و تحلیل آن فراهم شود", "حذف نیاز به آزمایش", "تبدیل کمیت‌های برداری به نرده‌ای"], correct: 1, explanation: "مدل‌سازی یعنی ساده و آرمانی کردن پدیده برای امکان تحلیل؛ با حذف اثرهای جزئی (نه تعیین‌کننده)." },
+      { topic: "کمیت‌های فیزیکی", question: "در عبارت «طول میله ۵ است» کدام بخش لازمِ بیان کمیت ذکر نشده است؟", options: ["یکای کمیت", "عدد صحیح بودن طول", "علامت میله", "مادهٔ سازندهٔ میله"], correct: 0, explanation: "بیان کمیت فیزیکی بدون ذکر یکا معنایی ندارد؛ در این عبارت یکا حذف شده است." },
+      { topic: "کمیت‌های فیزیکی", question: "کدام‌یک کمیت نرده‌ای است؟", options: ["جابه‌جایی", "سرعت", "شتاب", "جرم"], correct: 3, explanation: "جرم کمیت نرده‌ای است. جابه‌جایی، سرعت و شتاب برداری هستند." },
+      { topic: "کمیت‌های فیزیکی", question: "کدام‌یک کمیت برداری است؟", options: ["حجم", "مسافت", "جابه‌جایی", "زمان"], correct: 2, explanation: "جابه‌جایی برداری است. حجم، مسافت و زمان نرده‌ای هستند." },
+      { topic: "کمیت‌های فیزیکی", question: "برای نوشتن کمیت‌های برداری مانند نیرو و شتاب از چه نمادی استفاده می‌شود؟", options: ["علامت پیکان بالای نماد کمیت", "خط زیر نماد", "پرانتز دور نماد", "علامت ستاره کنار نماد"], correct: 0, explanation: "از پیکان بالای نماد استفاده می‌شود." },
+      { topic: "دستگاه بین‌المللی یکاها", question: "در دستگاه بین‌المللی یکاها (SI)، چند کمیت به‌عنوان کمیت اصلی انتخاب شده است؟", options: ["سه", "پنج", "هفت", "نه"], correct: 2, explanation: "هفت کمیت اصلی در SI وجود دارد." },
+      { topic: "دستگاه بین‌المللی یکاها", question: "کدام‌یک جزء کمیت‌های اصلی دستگاه بین‌المللی یکاها نیست؟", options: ["طول", "زمان", "نیرو", "مقدار ماده"], correct: 2, explanation: "نیرو کمیت فرعی است (از قانون دوم نیوتون به دست می‌آید)." },
+      { topic: "دستگاه بین‌المللی یکاها", question: "یکای جرم در دستگاه بین‌المللی یکاها چیست؟", options: ["گرم", "کیلوگرم", "پوند", "تن"], correct: 1, explanation: "یکای جرم در SI کیلوگرم (kg) است." },
+      { topic: "یکاهای فرعی", question: "یکای نیرو یعنی نیوتون (N) برحسب یکاهای اصلی چگونه بیان می‌شود؟", options: ["kg·m/s²", "kg·m/s", "kg·m²/s²", "kg/(m·s²)"], correct: 0, explanation: "نیوتون برابر kg·m/s² است (از F=ma)." },
+      { topic: "یکاهای فرعی", question: "یکای فشار یعنی پاسکال (Pa) برحسب یکاهای اصلی کدام است؟", options: ["kg·m/s²", "kg/(m·s²)", "kg·m²/s²", "kg·s²/m"], correct: 1, explanation: "پاسکال = نیرو بر سطح = (kg·m/s²)/m² = kg/(m·s²)." },
+      { topic: "پیشوندهای یکاها", question: "پیشوند نانو (n) چه ضریبی از یکای اصلی را نشان می‌دهد؟", options: ["10⁻⁶", "10⁻⁹", "10⁻¹²", "10⁹"], correct: 1, explanation: "نانو برابر 10⁻⁹ است." },
+      { topic: "پیشوندهای یکاها", question: "توان ۲ گیگاوات (GW) برابر چند وات است؟", options: ["2×10⁶ W", "2×10⁹ W", "2×10¹² W", "2×10³ W"], correct: 1, explanation: "گیگا = 10⁹؛ پس 2 GW = 2×10⁹ W." },
+      { topic: "پیشوندهای یکاها", question: "یک میکرومتر (µm) که به آن میکرون نیز می‌گویند، برابر چند متر است؟", options: ["10⁻⁹ m", "10⁻⁶ m", "10⁻³ m", "10⁶ m"], correct: 1, explanation: "میکرو = 10⁻⁶؛ پس 1 µm = 10⁻⁶ m." },
+      { topic: "نمادگذاری علمی", question: "کدام گزینه جرم یک زنبور عسل (0.00015 kg) را به‌صورت نمادگذاری علمی درست بیان می‌کند؟", options: ["1.5×10⁻⁵ kg", "1.5×10⁻⁴ kg", "0.15×10⁻³ kg", "15×10⁻⁵ kg"], correct: 1, explanation: "0.00015 = 1.5×10⁻⁴ (عدد بین ۱ و ۱۰)." },
+      { topic: "نمادگذاری علمی", question: "تندی نور در خلأ حدود 300 000 000 m/s است. کدام گزینه نمادگذاری علمیِ درست این مقدار است؟", options: ["3×10⁸ m/s", "3×10⁹ m/s", "3×10⁻⁸ m/s", "30×10⁷ m/s"], correct: 0, explanation: "300,000,000 = 3×10⁸؛ عدد ۳ بین ۱ و ۱۰ است." },
+      { topic: "نمادگذاری علمی", question: "در نمادگذاری علمی، عدد ضریب باید در چه بازه‌ای باشد؟", options: ["بین ۰ و ۱", "بین ۱ و ۱۰ (شامل ۱، بدون ۱۰)", "بین ۱ و ۱۰۰", "دلخواه"], correct: 1, explanation: "عدد a باید 1 ≤ a < 10 باشد." },
+      { topic: "تبدیل یکاها", question: "تندی 36 km/h برحسب m/s کدام است؟", options: ["360 m/s", "3.6 m/s", "10 m/s", "1 m/s"], correct: 2, explanation: "36 ÷ 3.6 = 10 m/s." },
+      { topic: "تبدیل یکاها", question: "2.5 h برحسب ثانیه کدام است؟", options: ["150 s", "900 s", "9000 s", "90000 s"], correct: 2, explanation: "2.5 × 3600 = 9000 s." },
+      { topic: "تبدیل یکاها", question: "آهنگ خروجی آب از شیلنگی 125 cm³/s است. این آهنگ برحسب لیتر بر دقیقه کدام است؟ (هر لیتر = 1000 cm³)", options: ["7.5 L/min", "0.125 L/min", "125 L/min", "7500 L/min"], correct: 0, explanation: "125 cm³/s × (1 L/1000 cm³) × (60 s/min) = 7.5 L/min." },
+      { topic: "سازگاری یکاها", question: "اگر جرم جسمی 325 g و شتاب آن 1.75 m/s² باشد، نیروی وارد بر جسم چند نیوتون است؟", options: ["568.75 N", "56.9 N", "0.569 N", "5.69 N"], correct: 2, explanation: "325 g = 0.325 kg ← F = 0.325 × 1.75 = 0.569 N." },
+      { topic: "دقت وسیله‌های اندازه‌گیری", question: "دقت خط‌کشی که تا میلی‌متر مدرج شده است، چقدر است؟", options: ["1 cm", "1 mm", "0.1 mm", "1 µm"], correct: 1, explanation: "دقت ابزار مدرج برابر کمینهٔ درجه‌بندی است؛ در اینجا 1 mm." },
+      { topic: "دقت وسیله‌های اندازه‌گیری", question: "دماسنج رقمی مقدار 0.2 °C را نشان می‌دهد که آخرین رقمش یک‌دهم درجه است. دقت این دماسنج چقدر است؟", options: ["0.2 °C", "0.1 °C", "1 °C", "0.01 °C"], correct: 1, explanation: "دقت ابزار رقمی برابر یک واحد از آخرین رقم است؛ اینجا 0.1 °C." },
+      { topic: "دقت و درستی", question: "ساعتی رقمی زمان را تا ثانیه اعلام می‌کند ولی چند دقیقه آهسته کار می‌کند. کدام گزینه درست است؟", options: ["دقیق و درست", "دقیق ولی نادرست", "نادقیق ولی درست", "نه دقیق و نه درست"], correct: 1, explanation: "دقت دارد (تا ثانیه) اما درست نیست (زمان را آهسته نشان می‌دهد)." },
+      { topic: "کاهش خطا", question: "برای کاهش خطای اندازه‌گیری معمولاً چه می‌کنند؟", options: ["اندازه‌گیری را یک بار انجام می‌دهند", "اندازه‌گیری را چند بار تکرار و میانگین عددها را گزارش می‌کنند", "عددهای متفاوت را بدون تغییر میانگین می‌گیرند", "همیشه از وسیلهٔ با دقت کمتر استفاده می‌کنند"], correct: 1, explanation: "تکرار اندازه‌گیری و میانگین‌گیری (با حذف عدد پرت) خطا را کاهش می‌دهد." },
+      { topic: "رقم‌های بامعنا (تکمیلی)", question: "عدد 0.000907 چند رقم بامعنا دارد؟", options: ["دو", "سه", "شش", "هفت"], correct: 1, explanation: "صفرهای سمت چپ بامعنا نیستند؛ ۹، ۰ و ۷ سه رقم بامعنا هستند." },
+      { topic: "رقم‌های بامعنا (تکمیلی)", question: "حاصل عبارت 3.1415 × 2.923 × 7.12 را با تعداد درست رقم بامعنا بیان کنید. (حاصل دقیق 65.38014404 است)", options: ["65.380", "65.38", "65.4", "65"], correct: 2, explanation: "کمترین رقم بامعنا در داده‌ها ۳ است (7.12)، پس نتیجه باید سه رقم بامعنا داشته باشد: 65.4." },
+      { topic: "چگالی", question: "رابطهٔ چگالی کدام است و یکای آن در SI چیست؟", options: ["ρ = V/m با یکای m³/kg", "ρ = m/V با یکای kg/m³", "ρ = m·V با یکای kg·m³", "ρ = m/V با یکای g/cm³"], correct: 1, explanation: "چگالی ρ = m/V و یکای SI آن kg/m³ است." },
+      { topic: "چگالی", question: "رابطهٔ صحیح بین یکاهای چگالی کدام است؟", options: ["1 g/cm³ = 100 kg/m³", "1 g/cm³ = 1000 kg/m³", "1 kg/m³ = 1000 g/cm³", "1 g/cm³ = 1 kg/m³"], correct: 1, explanation: "1 g/cm³ = 1000 kg/m³." },
+      { topic: "چگالی", question: "جرم قطعه‌ای از فلز اُسمیم با چگالی 22.5×10³ kg/m³ و حجم 23.0 cm³ چند کیلوگرم است؟", options: ["0.0518 kg", "0.518 kg", "5.18 kg", "51.8 kg"], correct: 1, explanation: "23.0 cm³ = 23.0×10⁻⁶ m³ ← m = (22.5×10³)(23.0×10⁻⁶) = 0.5175 ≈ 0.518 kg." },
+      { topic: "چگالی", question: "قطعه‌ای فلزی با جرم 270 g حجم 100 cm³ دارد. این قطعه از چه ماده‌ای است؟", options: ["آهن", "مس", "آلومینیم", "سرب"], correct: 2, explanation: "چگالی = 270/100 = 2.7 g/cm³ = 2700 kg/m³، که با آلومینیم مطابقت دارد." }
+    ];
+
+    /* ============ QUIZ RENDER ============ */
+    const quizList = document.getElementById('quizList');
+    const scorePill = document.getElementById('scorePill');
+    const resetQuizBtn = document.getElementById('resetQuiz');
+
+    const state = {
+      answers: new Array(questions.length).fill(null),
+      revealed: new Array(questions.length).fill(false)
+    };
+
+    function renderQuiz() {
+      quizList.innerHTML = '';
+      questions.forEach((q, idx) => {
+        const item = document.createElement('div');
+        item.className = 'quiz-item';
+        item.dataset.qidx = idx;
+
+        const qDiv = document.createElement('div');
+        qDiv.className = 'quiz-q';
+        qDiv.innerHTML = `<div class="q-index">${idx + 1}</div>
+          <div class="q-body">
+            <div class="q-topic">${q.topic}</div>
+            <div class="q-text">${q.question}</div>
+          </div>`;
+        item.appendChild(qDiv);
+
+        const optsDiv = document.createElement('div');
+        optsDiv.className = 'options';
+        q.options.forEach((opt, oi) => {
+          const o = document.createElement('div');
+          o.className = 'opt';
+          o.dataset.oi = oi;
+          o.innerHTML = `<span class="onum">${oi + 1}</span><span>${opt}</span>`;
+          o.addEventListener('click', () => handleAnswer(idx, oi));
+          optsDiv.appendChild(o);
+        });
+        item.appendChild(optsDiv);
+
+        const ansBtn = document.createElement('button');
+        ansBtn.className = 'btn-answer';
+        ansBtn.textContent = 'نمایش پاسخ';
+        ansBtn.addEventListener('click', () => toggleAnswer(idx));
+        item.appendChild(ansBtn);
+
+        const panel = document.createElement('div');
+        panel.className = 'answer-panel';
+        panel.id = `ans-${idx}`;
+        panel.innerHTML = `<span class="correct-tag">پاسخ صحیح: ${q.correct + 1}</span> ${q.explanation}`;
+        item.appendChild(panel);
+
+        quizList.appendChild(item);
+      });
+      updateScore();
+    }
+
+    function handleAnswer(qIdx, oIdx) {
+      if (state.revealed[qIdx]) return;
+      const q = questions[qIdx];
+      const item = quizList.querySelector(`.quiz-item[data-qidx="${qIdx}"]`);
+      const opts = item.querySelectorAll('.opt');
+      const isCorrect = (oIdx === q.correct);
+
+      state.answers[qIdx] = isCorrect;
+      state.revealed[qIdx] = true;
+
+      opts.forEach((el, i) => {
+        el.style.pointerEvents = 'none';
+        if (i === q.correct) el.classList.add('is-correct');
+        if (i === oIdx && !isCorrect) el.classList.add('is-wrong');
+      });
+
+      document.getElementById(`ans-${qIdx}`).classList.add('show');
+      item.querySelector('.btn-answer').textContent = 'پاسخ نمایش داده شد';
+      updateScore();
+    }
+
+    function toggleAnswer(qIdx) {
+      const panel = document.getElementById(`ans-${qIdx}`);
+      const item = quizList.querySelector(`.quiz-item[data-qidx="${qIdx}"]`);
+      const q = questions[qIdx];
+
+      if (!state.revealed[qIdx]) {
+        const opts = item.querySelectorAll('.opt');
+        opts.forEach((el, i) => {
+          if (i === q.correct) el.classList.add('is-correct');
+          el.style.pointerEvents = 'none';
+        });
+        state.revealed[qIdx] = true;
+        if (state.answers[qIdx] === null) state.answers[qIdx] = false;
+        panel.classList.add('show');
+        item.querySelector('.btn-answer').textContent = 'پاسخ نمایش داده شد';
+        updateScore();
+      } else {
+        panel.classList.toggle('show');
+      }
+    }
+
+    function updateScore() {
+      const correct = state.answers.filter((a, i) => a === true && state.revealed[i]).length;
+      scorePill.textContent = `پاسخ صحیح: ${correct} از ${questions.length}`;
+    }
+
+    function resetQuiz() {
+      state.answers = new Array(questions.length).fill(null);
+      state.revealed = new Array(questions.length).fill(false);
+      quizList.querySelectorAll('.quiz-item').forEach((item, idx) => {
+        item.querySelectorAll('.opt').forEach(el => {
+          el.classList.remove('is-correct', 'is-wrong');
+          el.style.pointerEvents = 'auto';
+        });
+        const panel = document.getElementById(`ans-${idx}`);
+        if (panel) panel.classList.remove('show');
+        const btn = item.querySelector('.btn-answer');
+        if (btn) btn.textContent = 'نمایش پاسخ';
+      });
+      updateScore();
+    }
+
+    renderQuiz();
+    resetQuizBtn.addEventListener('click', resetQuiz);
+
+    /* ============ INIT ACTIVE NAV ============ */
+    (function initActive() {
+      const hash = window.location.hash.replace('#', '');
+      const validIds = [...navLinks].map(l => l.dataset.nav);
+      if (hash && validIds.includes(hash)) {
+        setActiveNav(hash);
+        setTimeout(() => {
+          const target = document.getElementById(hash);
+          if (target) {
+            const offset = headerHeight() + 12;
+            window.scrollTo(0, target.getBoundingClientRect().top + window.pageYOffset - offset);
+          }
+        }, 50);
+      } else {
+        setActiveNav('home');
+      }
+    })();
+  </script>
+</body>
+</html>
