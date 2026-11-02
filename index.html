@@ -644,6 +644,9 @@
       .content-section, .hero { box-shadow: none; border: 1px solid #ccc; }
       body { background: #fff; color: #000; }
     }
+  .quiz-hidden {
+  display: none;
+}
   </style>
 </head>
 <body>
@@ -1048,11 +1051,12 @@
           <div class="section-num">؟</div>
           <div style="flex:1;min-width:0;"><h2>تست‌های تعاملی فصل اول</h2><small>۳۲ تست چهارگزینه‌ای آموزشی — با کلیک روی هر گزینه، پاسخ و راه‌حل کامل نمایش داده می‌شود</small></div>
         </div>
-        <div class="quiz-toolbar">
-          <div class="score-pill" id="scorePill">پاسخ صحیح: ۰ از ۳۲</div>
-          <button class="btn-reset" id="resetQuiz">شروع دوباره</button>
-        </div>
-        <div id="quizList"></div>
+<div class="quiz-toolbar">
+  <button class="btn-reset" id="toggleQuiz">📝 نمایش تست‌ها</button>
+  <div class="score-pill" id="scorePill">پاسخ صحیح: ۰ از ۳۲</div>
+  <button class="btn-reset" id="resetQuiz">شروع دوباره</button>
+</div>
+<div id="quizList" class="quiz-hidden"></div>
       </section>
 
     </main>
@@ -1344,7 +1348,21 @@
       updateScore();
     }
 
-    renderQuiz();
+    /* ============ TOGGLE QUIZ ============ */
+const toggleQuizBtn = document.getElementById('toggleQuiz');
+let quizOpen = false;
+
+toggleQuizBtn.addEventListener('click', () => {
+  quizOpen = !quizOpen;
+  quizList.classList.toggle('quiz-hidden', !quizOpen);
+  toggleQuizBtn.textContent = quizOpen ? '📝 بستن تست‌ها' : '📝 نمایش تست‌ها';
+  if (quizOpen) {
+    // اسکرول نرم به ابتدای تست‌ها
+    const offset = headerHeight() + 12;
+    const targetY = quizList.getBoundingClientRect().top + window.pageYOffset - offset;
+    window.scrollTo({ top: targetY, behavior: 'smooth' });
+  }
+});renderQuiz();
     resetQuizBtn.addEventListener('click', resetQuiz);
 
     /* ============ INIT ACTIVE NAV ============ */
