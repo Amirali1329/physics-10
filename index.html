@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
@@ -93,9 +94,6 @@
     h3 { font-size: clamp(1rem, 2.5vw, 1.12rem); font-weight: 700; color: var(--accent); margin: 1.6rem 0 0.5rem; }
     h4 { font-size: 1rem; font-weight: 700; margin: 1rem 0 0.3rem; }
 
-    /* ============ BDI: نمایش صحیح یکا و عدد ============ */
-    /* از تگ bdi خود HTML استفاده می‌کنیم که در همه مرورگرها پشتیبانی می‌شود.
-       اینجا فقط یک استایل ظاهری کوچک اضافه می‌کنیم. */
     bdi.unit {
       font-family: 'Courier New', 'Vazirmatn', monospace;
       background: var(--surface-3);
@@ -103,64 +101,38 @@
       border-radius: 0.35rem;
       color: var(--heading);
       font-size: 0.92em;
-      /* هیچ direction یا unicode-bidi لازم نیست — bdi خودش کار می‌کند */
     }
 
-    /* ============ بردار: SVG واقعی، بدون mask ============ */
     .vec {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.05em;
-      position: relative;
-      font-style: italic;
+      display: inline-flex; align-items: center; gap: 0.05em;
+      position: relative; font-style: italic;
       font-family: 'Times New Roman', 'Vazirmatn', serif;
-      direction: ltr;
-      vertical-align: baseline;
-      padding-top: 0.15em;
+      direction: ltr; vertical-align: baseline; padding-top: 0.15em;
     }
     .vec svg {
-      width: 0.55em;
-      height: 0.5em;
-      position: absolute;
-      top: -0.15em;
-      left: 50%;
-      transform: translateX(-50%);
-      fill: currentColor;
-      pointer-events: none;
+      width: 0.55em; height: 0.5em; position: absolute;
+      top: -0.15em; left: 50%; transform: translateX(-50%);
+      fill: currentColor; pointer-events: none;
     }
 
-    /* ============ HEADER ============ */
     .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
+      position: sticky; top: 0; z-index: 100;
       background: color-mix(in srgb, var(--surface) 90%, transparent);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
       transition: background var(--transition), border-color var(--transition);
     }
     .header-inner {
-      max-width: 1280px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      padding: 0.7rem 1.2rem;
-      min-height: var(--header-h);
+      max-width: 1280px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem; padding: 0.7rem 1.2rem; min-height: var(--header-h);
     }
     .brand { display: flex; align-items: center; gap: 0.6rem; min-width: 0; }
     .brand-badge {
-      width: 2.6rem; height: 2.6rem;
-      display: grid; place-items: center;
+      width: 2.6rem; height: 2.6rem; display: grid; place-items: center;
       background: linear-gradient(135deg, var(--accent), #0a5b4f);
-      color: #fff;
-      font-weight: 800;
-      border-radius: 0.9rem;
-      font-size: 1.1rem;
-      box-shadow: 0 4px 12px -4px var(--accent);
-      flex-shrink: 0;
+      color: #fff; font-weight: 800; border-radius: 0.9rem; font-size: 1.1rem;
+      box-shadow: 0 4px 12px -4px var(--accent); flex-shrink: 0;
     }
     .brand-text { min-width: 0; }
     .brand-text small { display: block; font-size: 0.7rem; color: var(--text-muted); line-height: 1.3; }
@@ -168,181 +140,111 @@
 
     .header-actions { display: flex; align-items: center; gap: 0.5rem; flex-shrink: 0; }
     .icon-btn {
-      width: 2.5rem; height: 2.5rem;
-      display: grid; place-items: center;
-      background: var(--surface-2);
-      border: 1px solid var(--border);
-      border-radius: 0.8rem;
-      color: var(--text);
-      cursor: pointer;
-      font-size: 1.1rem;
-      transition: all var(--transition);
+      width: 2.5rem; height: 2.5rem; display: grid; place-items: center;
+      background: var(--surface-2); border: 1px solid var(--border);
+      border-radius: 0.8rem; color: var(--text); cursor: pointer;
+      font-size: 1.1rem; transition: all var(--transition);
     }
     .icon-btn:hover { background: var(--accent-soft); border-color: var(--accent-border); color: var(--accent); }
     .menu-toggle { display: none; }
 
-    /* ============ LAYOUT ============ */
     .page-wrap {
-      max-width: 1280px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 250px 1fr;
-      gap: 1.6rem;
-      padding: 1.5rem 1.2rem;
-      align-items: start;
+      max-width: 1280px; margin: 0 auto;
+      display: grid; grid-template-columns: 250px 1fr;
+      gap: 1.6rem; padding: 1.5rem 1.2rem; align-items: start;
     }
 
-    /* ============ SIDEBAR ============ */
     .sidebar {
-      position: sticky;
-      top: calc(var(--header-h) + 1rem);
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1rem 0.85rem;
+      position: sticky; top: calc(var(--header-h) + 1rem);
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1rem 0.85rem;
       box-shadow: var(--shadow);
       max-height: calc(100vh - var(--header-h) - 2rem);
       overflow-y: auto;
       transition: background var(--transition), border-color var(--transition), transform var(--transition);
     }
     .sidebar-title {
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      padding: 0 0.6rem 0.5rem;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 0.5rem;
+      font-size: 0.78rem; font-weight: 700; color: var(--text-muted);
+      text-transform: uppercase; letter-spacing: 0.06em;
+      padding: 0 0.6rem 0.5rem; border-bottom: 1px solid var(--border); margin-bottom: 0.5rem;
     }
     .nav-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.15rem; }
     .nav-link {
-      display: flex;
-      align-items: center;
-      gap: 0.65rem;
-      padding: 0.55rem 0.7rem;
-      border-radius: 0.7rem;
-      color: var(--text);
-      font-size: 0.9rem;
-      font-weight: 500;
-      transition: all var(--transition);
-      border: 1px solid transparent;
-      cursor: pointer;
-      user-select: none;
-      -webkit-tap-highlight-color: transparent;
+      display: flex; align-items: center; gap: 0.65rem;
+      padding: 0.55rem 0.7rem; border-radius: 0.7rem;
+      color: var(--text); font-size: 0.9rem; font-weight: 500;
+      transition: all var(--transition); border: 1px solid transparent;
+      cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent;
     }
     .nav-link .nav-icon {
-      width: 1.6rem; height: 1.6rem;
-      display: grid; place-items: center;
-      background: var(--surface-2);
-      border-radius: 0.5rem;
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: var(--accent);
-      flex-shrink: 0;
-      transition: all var(--transition);
+      width: 1.6rem; height: 1.6rem; display: grid; place-items: center;
+      background: var(--surface-2); border-radius: 0.5rem;
+      font-size: 0.8rem; font-weight: 700; color: var(--accent);
+      flex-shrink: 0; transition: all var(--transition);
     }
     .nav-link:hover { background: var(--surface-2); color: var(--heading); }
     .nav-link.active {
-      background: var(--accent-soft);
-      border-color: var(--accent-border);
-      color: var(--accent);
-      font-weight: 700;
+      background: var(--accent-soft); border-color: var(--accent-border);
+      color: var(--accent); font-weight: 700;
     }
     .nav-link.active .nav-icon { background: var(--accent); color: #fff; }
     .nav-divider { height: 1px; background: var(--border); margin: 0.5rem 0.4rem; }
 
-    /* ============ MAIN ============ */
     .main-content { min-width: 0; }
 
     .hero {
       background: linear-gradient(135deg, var(--surface), var(--surface-2));
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: clamp(1.2rem, 4vw, 2.2rem);
-      margin-bottom: 1.6rem;
-      box-shadow: var(--shadow);
-      position: relative;
-      overflow: hidden;
+      border: 1px solid var(--border); border-radius: var(--radius);
+      padding: clamp(1.2rem, 4vw, 2.2rem); margin-bottom: 1.6rem;
+      box-shadow: var(--shadow); position: relative; overflow: hidden;
       scroll-margin-top: calc(var(--header-h) + 1rem);
     }
     .hero::before {
-      content: '';
-      position: absolute;
-      top: -60px; left: -60px;
+      content: ''; position: absolute; top: -60px; left: -60px;
       width: 220px; height: 220px;
       background: radial-gradient(circle, var(--accent-soft), transparent 70%);
-      border-radius: 50%;
-      pointer-events: none;
+      border-radius: 50%; pointer-events: none;
     }
     .hero-badge {
       display: inline-flex; align-items: center; gap: 0.4rem;
-      background: var(--accent-soft);
-      color: var(--accent);
-      font-weight: 700;
-      font-size: 0.78rem;
-      padding: 0.25rem 0.9rem;
-      border-radius: 2rem;
-      border: 1px solid var(--accent-border);
-      margin-bottom: 0.9rem;
+      background: var(--accent-soft); color: var(--accent);
+      font-weight: 700; font-size: 0.78rem; padding: 0.25rem 0.9rem;
+      border-radius: 2rem; border: 1px solid var(--accent-border); margin-bottom: 0.9rem;
     }
     .hero h1 { margin-bottom: 0.5rem; }
     .hero p { color: var(--text-muted); max-width: 65ch; margin-bottom: 1.2rem; }
-    .hero-stats {
-      display: flex; flex-wrap: wrap; gap: 0.6rem;
-      position: relative; z-index: 1;
-    }
+    .hero-stats { display: flex; flex-wrap: wrap; gap: 0.6rem; position: relative; z-index: 1; }
     .stat-chip {
       display: flex; align-items: center; gap: 0.4rem;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      padding: 0.3rem 0.85rem;
-      border-radius: 2rem;
-      font-size: 0.82rem;
-      font-weight: 500;
-      color: var(--text);
+      background: var(--surface); border: 1px solid var(--border);
+      padding: 0.3rem 0.85rem; border-radius: 2rem;
+      font-size: 0.82rem; font-weight: 500; color: var(--text);
     }
     .stat-chip span:first-child { font-size: 1rem; }
 
-    /* ============ SECTIONS ============ */
     .content-section {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: clamp(1.2rem, 3vw, 1.8rem);
-      margin-bottom: 1.5rem;
-      box-shadow: var(--shadow);
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: clamp(1.2rem, 3vw, 1.8rem);
+      margin-bottom: 1.5rem; box-shadow: var(--shadow);
       transition: background var(--transition), border-color var(--transition);
       scroll-margin-top: calc(var(--header-h) + 1rem);
     }
     .section-head {
       display: flex; align-items: center; gap: 0.8rem;
-      margin-bottom: 0.9rem;
-      padding-bottom: 0.6rem;
-      border-bottom: 2px solid var(--border);
-      flex-wrap: wrap;
+      margin-bottom: 0.9rem; padding-bottom: 0.6rem;
+      border-bottom: 2px solid var(--border); flex-wrap: wrap;
     }
     .section-num {
-      width: 2.4rem; height: 2.4rem;
-      display: grid; place-items: center;
-      background: var(--accent);
-      color: #fff;
-      font-weight: 800;
-      border-radius: 0.8rem;
-      font-size: 1.05rem;
-      flex-shrink: 0;
+      width: 2.4rem; height: 2.4rem; display: grid; place-items: center;
+      background: var(--accent); color: #fff; font-weight: 800;
+      border-radius: 0.8rem; font-size: 1.05rem; flex-shrink: 0;
     }
     .section-head h2 { margin: 0; flex: 1; min-width: 0; }
     .section-head small { display: block; font-size: 0.8rem; color: var(--text-muted); font-weight: 400; }
 
-    /* ============ INFO CARDS ============ */
     .info-card {
-      border-radius: 1rem;
-      padding: 1rem 1.25rem;
-      margin: 1.1rem 0;
-      border: 1px solid;
-      border-right: 4px solid;
-      transition: all var(--transition);
+      border-radius: 1rem; padding: 1rem 1.25rem; margin: 1.1rem 0;
+      border: 1px solid; border-right: 4px solid; transition: all var(--transition);
     }
     .info-card .ic-title {
       display: flex; align-items: center; gap: 0.45rem;
@@ -356,45 +258,25 @@
     .card-example { background: var(--example-bg); border-color: var(--example-border); border-right-color: var(--accent); }
     .card-example .ic-title { color: var(--example-text); }
 
-    /* ============ TABLES ============ */
     .table-scroll {
-      overflow-x: auto;
-      border-radius: 0.9rem;
-      border: 1px solid var(--border);
-      margin: 1rem 0;
-      -webkit-overflow-scrolling: touch;
+      overflow-x: auto; border-radius: 0.9rem; border: 1px solid var(--border);
+      margin: 1rem 0; -webkit-overflow-scrolling: touch;
     }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.9rem;
-      min-width: 380px;
-    }
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; min-width: 380px; }
     thead th {
-      background: var(--surface-2);
-      color: var(--heading);
-      font-weight: 700;
-      padding: 0.7rem 0.55rem;
-      border-bottom: 2px solid var(--border);
-      text-align: center;
+      background: var(--surface-2); color: var(--heading);
+      font-weight: 700; padding: 0.7rem 0.55rem;
+      border-bottom: 2px solid var(--border); text-align: center;
     }
-    tbody td {
-      padding: 0.55rem;
-      text-align: center;
-      border-bottom: 1px solid var(--border);
-      color: var(--text);
-    }
+    tbody td { padding: 0.55rem; text-align: center; border-bottom: 1px solid var(--border); color: var(--text); }
     tbody tr:last-child td { border-bottom: none; }
     tbody tr:hover { background: var(--surface-2); }
     .table-caption {
-      background: var(--surface-2);
-      padding: 0.4rem 0.9rem;
-      font-size: 0.78rem;
-      color: var(--text-muted);
+      background: var(--surface-2); padding: 0.4rem 0.9rem;
+      font-size: 0.78rem; color: var(--text-muted);
       border-top: 1px solid var(--border);
     }
 
-    /* ============ شکل‌های آموزشی دوبعدی ============ */
     .visual-card { margin: 1.1rem 0; padding: 1rem; border: 1px solid var(--border); border-radius: 1rem; background: var(--surface-2); }
     .visual-title { font-weight: 800; color: var(--heading); margin-bottom: .7rem; }
     .visual-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(155px, 1fr)); gap: .75rem; }
@@ -406,68 +288,41 @@
     .footer-link { display:inline-flex; align-items:center; gap:.35rem; margin-top:.45rem; padding:.35rem .8rem; border:1px solid var(--accent-border); border-radius:2rem; background:var(--accent-soft); font-weight:700; }
     .footer-credit { color:var(--text-muted); font-size:.84rem; margin-top:.4rem; }
 
-    /* ============ FORMULA ============ */
     .formula {
-      background: var(--surface-2);
-      border: 1px dashed var(--accent-border);
-      border-radius: 0.9rem;
-      padding: 0.85rem 1.2rem;
-      margin: 1rem 0;
-      text-align: center;
-      direction: ltr;
-      font-family: 'Courier New', monospace;
-      font-size: clamp(0.95rem, 2.5vw, 1.15rem);
-      letter-spacing: 0.5px;
-      color: var(--heading);
-      overflow-x: auto;
+      background: var(--surface-2); border: 1px dashed var(--accent-border);
+      border-radius: 0.9rem; padding: 0.85rem 1.2rem; margin: 1rem 0;
+      text-align: center; direction: ltr; font-family: 'Courier New', monospace;
+      font-size: clamp(0.95rem, 2.5vw, 1.15rem); letter-spacing: 0.5px;
+      color: var(--heading); overflow-x: auto;
     }
 
-    /* ============ QUIZ ============ */
     .quiz-toolbar {
       display: flex; flex-wrap: wrap; gap: 1rem;
-      align-items: center; justify-content: space-between;
-      margin-bottom: 1.2rem;
+      align-items: center; justify-content: space-between; margin-bottom: 1.2rem;
     }
     .score-pill {
-      background: var(--accent-soft);
-      border: 1px solid var(--accent-border);
-      color: var(--accent);
-      font-weight: 700;
-      padding: 0.35rem 1.1rem;
-      border-radius: 2rem;
-      font-size: 0.88rem;
+      background: var(--accent-soft); border: 1px solid var(--accent-border);
+      color: var(--accent); font-weight: 700; padding: 0.35rem 1.1rem;
+      border-radius: 2rem; font-size: 0.88rem;
     }
     .btn-reset {
-      background: var(--surface-2);
-      border: 1px solid var(--border);
-      color: var(--text);
-      font-family: var(--font);
-      font-size: 0.85rem;
-      padding: 0.45rem 1.2rem;
-      border-radius: 2rem;
-      cursor: pointer;
+      background: var(--surface-2); border: 1px solid var(--border);
+      color: var(--text); font-family: var(--font); font-size: 0.85rem;
+      padding: 0.45rem 1.2rem; border-radius: 2rem; cursor: pointer;
       transition: all var(--transition);
     }
     .btn-reset:hover { background: var(--accent-soft); border-color: var(--accent-border); color: var(--accent); }
 
     .quiz-item {
-      background: var(--surface-2);
-      border: 1px solid var(--border);
-      border-radius: 1rem;
-      padding: 1.1rem 1.2rem;
-      margin-bottom: 1rem;
+      background: var(--surface-2); border: 1px solid var(--border);
+      border-radius: 1rem; padding: 1.1rem 1.2rem; margin-bottom: 1rem;
       transition: all var(--transition);
     }
     .quiz-q { display: flex; gap: 0.7rem; margin-bottom: 0.8rem; }
     .q-index {
-      width: 1.9rem; height: 1.9rem;
-      display: grid; place-items: center;
-      background: var(--accent);
-      color: #fff;
-      border-radius: 0.6rem;
-      font-weight: 800;
-      font-size: 0.8rem;
-      flex-shrink: 0;
+      width: 1.9rem; height: 1.9rem; display: grid; place-items: center;
+      background: var(--accent); color: #fff; border-radius: 0.6rem;
+      font-weight: 800; font-size: 0.8rem; flex-shrink: 0;
     }
     .q-body { flex: 1; min-width: 0; }
     .q-topic { font-size: 0.72rem; color: var(--text-muted); font-weight: 500; }
@@ -476,27 +331,17 @@
     .options { display: flex; flex-direction: column; gap: 0.4rem; }
     .opt {
       display: flex; align-items: center; gap: 0.65rem;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 2rem;
-      padding: 0.5rem 0.95rem;
-      cursor: pointer;
-      font-size: 0.9rem;
-      transition: all var(--transition);
-      user-select: none;
-      -webkit-tap-highlight-color: transparent;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 2rem; padding: 0.5rem 0.95rem; cursor: pointer;
+      font-size: 0.9rem; transition: all var(--transition);
+      user-select: none; -webkit-tap-highlight-color: transparent;
     }
     .opt:hover { background: var(--surface-3); border-color: var(--accent-border); }
     .opt .onum {
-      width: 1.5rem; height: 1.5rem;
-      display: grid; place-items: center;
-      background: var(--surface-3);
-      color: var(--text);
-      border-radius: 50%;
-      font-size: 0.75rem;
-      font-weight: 700;
-      flex-shrink: 0;
-      transition: all var(--transition);
+      width: 1.5rem; height: 1.5rem; display: grid; place-items: center;
+      background: var(--surface-3); color: var(--text);
+      border-radius: 50%; font-size: 0.75rem; font-weight: 700;
+      flex-shrink: 0; transition: all var(--transition);
     }
     .opt.is-correct { background: var(--example-bg); border-color: var(--example-border); font-weight: 600; }
     .opt.is-correct .onum { background: var(--success); color: #fff; }
@@ -505,78 +350,45 @@
     .opt.is-wrong .onum { background: var(--danger); color: #fff; }
 
     .btn-answer {
-      margin-top: 0.6rem;
-      background: var(--surface-3);
-      border: 1px solid var(--border);
-      color: var(--text);
-      font-family: var(--font);
-      font-size: 0.8rem;
-      padding: 0.3rem 1rem;
-      border-radius: 2rem;
-      cursor: pointer;
-      transition: all var(--transition);
+      margin-top: 0.6rem; background: var(--surface-3);
+      border: 1px solid var(--border); color: var(--text);
+      font-family: var(--font); font-size: 0.8rem; padding: 0.3rem 1rem;
+      border-radius: 2rem; cursor: pointer; transition: all var(--transition);
     }
     .btn-answer:hover { background: var(--accent-soft); border-color: var(--accent-border); color: var(--accent); }
     .answer-panel {
-      display: none;
-      margin-top: 0.8rem;
-      background: var(--note-bg);
-      border: 1px solid var(--note-border);
-      border-right: 3px solid #3b82f6;
-      border-radius: 0.8rem;
-      padding: 0.8rem 1rem;
-      font-size: 0.88rem;
+      display: none; margin-top: 0.8rem; background: var(--note-bg);
+      border: 1px solid var(--note-border); border-right: 3px solid #3b82f6;
+      border-radius: 0.8rem; padding: 0.8rem 1rem; font-size: 0.88rem;
     }
     .answer-panel.show { display: block; }
     .answer-panel .correct-tag {
-      display: inline-block;
-      background: var(--success);
-      color: #fff;
-      font-weight: 800;
-      padding: 0.05rem 0.7rem;
-      border-radius: 2rem;
-      font-size: 0.75rem;
-      margin-left: 0.4rem;
+      display: inline-block; background: var(--success); color: #fff;
+      font-weight: 800; padding: 0.05rem 0.7rem; border-radius: 2rem;
+      font-size: 0.75rem; margin-left: 0.4rem;
     }
 
-    /* ============ FOOTER ============ */
     .site-footer {
-      max-width: 1280px;
-      margin: 2rem auto 0;
-      padding: 1.5rem 1.2rem;
-      text-align: center;
-      border-top: 1px solid var(--border);
+      max-width: 1280px; margin: 2rem auto 0; padding: 1.5rem 1.2rem;
+      text-align: center; border-top: 1px solid var(--border);
     }
     .footer-brand {
       display: inline-flex; align-items: center; gap: 0.5rem;
-      font-weight: 800;
-      color: var(--heading);
-      margin-bottom: 0.3rem;
-      flex-wrap: wrap;
-      justify-content: center;
+      font-weight: 800; color: var(--heading); margin-bottom: 0.3rem;
+      flex-wrap: wrap; justify-content: center;
     }
     .footer-brand span {
       background: linear-gradient(135deg, var(--accent), #0a5b4f);
-      color: #fff;
-      padding: 0.15rem 0.6rem;
-      border-radius: 0.5rem;
-      font-size: 0.85rem;
+      color: #fff; padding: 0.15rem 0.6rem; border-radius: 0.5rem; font-size: 0.85rem;
     }
     .footer-line { color: var(--text-muted); font-size: 0.82rem; }
     .footer-line a { font-weight: 600; }
 
-    /* ============ BACK TO TOP ============ */
     .to-top {
-      position: fixed;
-      bottom: 1.5rem; left: 1.5rem;
-      width: 2.8rem; height: 2.8rem;
-      display: grid; place-items: center;
-      background: var(--accent);
-      color: #fff;
-      border: none;
-      border-radius: 1rem;
-      cursor: pointer;
-      font-size: 1.1rem;
+      position: fixed; bottom: 1.5rem; left: 1.5rem;
+      width: 2.8rem; height: 2.8rem; display: grid; place-items: center;
+      background: var(--accent); color: #fff; border: none;
+      border-radius: 1rem; cursor: pointer; font-size: 1.1rem;
       box-shadow: 0 6px 18px -4px var(--accent);
       opacity: 0; pointer-events: none;
       transition: opacity var(--transition), transform var(--transition);
@@ -585,31 +397,152 @@
     .to-top.visible { opacity: 1; pointer-events: auto; }
     .to-top:hover { transform: translateY(-3px); }
 
-    /* ============ OVERLAY ============ */
     .overlay {
-      position: fixed; inset: 0;
-      background: rgba(0,0,0,0.45);
-      z-index: 150;
-      opacity: 0; pointer-events: none;
+      position: fixed; inset: 0; background: rgba(0,0,0,0.45);
+      z-index: 150; opacity: 0; pointer-events: none;
       transition: opacity var(--transition);
     }
     .overlay.show { opacity: 1; pointer-events: auto; }
 
-    /* ============ RESPONSIVE ============ */
+    .study-tools{display:flex;gap:.65rem;align-items:center;flex-wrap:wrap;margin:0 0 1rem}
+    .study-tools input{flex:1;min-width:190px;padding:.75rem 1rem;border:1px solid var(--border);border-radius:.85rem;background:var(--surface);color:var(--text);font:inherit;outline:none}
+    .study-tools input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+    #searchStatus{font-size:.78rem;color:var(--text-muted)}
+    .progress-widget{margin-top:1.2rem;padding:1rem;background:var(--surface);border:1px solid var(--border);border-radius:1rem;position:relative;z-index:1}
+    .progress-top{display:flex;justify-content:space-between;gap:.7rem;flex-wrap:wrap;font-size:.88rem}
+    .progress-top span{color:var(--accent);font-weight:700}
+    .progress-track{height:9px;background:var(--surface-3);border-radius:99px;overflow:hidden;margin:.65rem 0}
+    .progress-track span{display:block;width:0;height:100%;background:linear-gradient(90deg,var(--accent),#39b99f);border-radius:99px;transition:width .35s ease}
+    .progress-widget p{font-size:.78rem;color:var(--text-muted);margin:0}
+    .lesson-complete{display:inline-flex;align-items:center;gap:.35rem;margin:.15rem 0 .9rem;padding:.35rem .75rem;border:1px solid var(--accent-border);border-radius:2rem;background:var(--accent-soft);color:var(--accent);font:600 .78rem var(--font);cursor:pointer}
+    .lesson-complete.done{background:var(--accent);color:white;border-color:var(--accent)}
+    body.focus-mode .site-header,body.focus-mode .sidebar,body.focus-mode .to-top{display:none!important}
+    body.focus-mode .study-tools{position:fixed;bottom:1rem;left:1rem;z-index:300;margin:0}
+    body.focus-mode .study-tools input,body.focus-mode #searchStatus{display:none}
+    body.focus-mode .page-wrap{display:block;max-width:920px;padding-top:1rem}
+    body.focus-mode .hero,body.focus-mode .content-section{box-shadow:none}
+    .quiz-item.review-hidden{display:none}
+    @media(max-width:520px){.study-tools{align-items:stretch}.study-tools input{width:100%;flex-basis:100%}#focusMode{width:100%}}
+
+    /* ============ TOOLS (Collapsible) ============ */
+    .tool-block {
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      background: var(--surface-2);
+      overflow: hidden;
+    }
+    .tool-toggle {
+      width: 100%;
+      display: flex; align-items: center; justify-content: space-between; gap: .6rem;
+      padding: .9rem 1.1rem;
+      background: var(--surface);
+      border: none;
+      font: 700 .95rem var(--font);
+      color: var(--heading);
+      cursor: pointer;
+      transition: background var(--transition), color var(--transition);
+    }
+    .tool-toggle:hover { background: var(--accent-soft); color: var(--accent); }
+    .tool-toggle[aria-expanded="true"] { background: var(--accent-soft); color: var(--accent); }
+    .tool-chevron { transition: transform var(--transition); display: inline-block; }
+    .tool-toggle[aria-expanded="true"] .tool-chevron { transform: rotate(180deg); }
+    .tool-body { padding: 1rem 1.1rem 1.2rem; border-top: 1px solid var(--border); }
+
+    .calc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: .75rem;
+      margin-bottom: .9rem;
+    }
+    .calc-grid label { display: flex; flex-direction: column; gap: .35rem; font-size: .82rem; color: var(--text-muted); font-weight: 600; }
+    .calc-grid input, .calc-grid select,
+    .lab-row input, .lab-row select, .density-row input, .density-row select {
+      font: inherit;
+      padding: .55rem .8rem;
+      border: 1px solid var(--border);
+      border-radius: .7rem;
+      background: var(--surface);
+      color: var(--text);
+      outline: none;
+      transition: border-color var(--transition), box-shadow var(--transition);
+      width: 100%;
+    }
+    .calc-grid input:focus, .calc-grid select:focus,
+    .lab-row input:focus, .lab-row select:focus,
+    .density-row input:focus, .density-row select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-soft);
+    }
+    .calc-result {
+      background: var(--surface);
+      border: 1px dashed var(--accent-border);
+      border-radius: .8rem;
+      padding: .7rem 1rem;
+      font-weight: 700;
+      color: var(--heading);
+      text-align: center;
+      direction: rtl;
+      word-break: break-word;
+    }
+    .calc-actions { display: flex; gap: .6rem; margin-top: .8rem; flex-wrap: wrap; }
+    .calc-hint { font-size: .75rem; color: var(--text-muted); margin-top: .6rem; }
+
+    /* ============ DENSITY TEST ============ */
+    .density-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: .75rem;
+      margin-bottom: .9rem;
+    }
+    .density-row label { display: flex; flex-direction: column; gap: .35rem; font-size: .82rem; color: var(--text-muted); font-weight: 600; }
+    .density-result {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: .9rem;
+      padding: .9rem 1rem;
+      margin-top: .4rem;
+    }
+    .density-result .dr-main {
+      font-weight: 800;
+      color: var(--heading);
+      font-size: 1.05rem;
+      text-align: center;
+      margin-bottom: .5rem;
+    }
+    .density-badge {
+      display: inline-block;
+      padding: .15rem .7rem;
+      border-radius: 2rem;
+      font-size: .78rem;
+      font-weight: 700;
+      border: 1px solid;
+      margin: .15rem .15rem .15rem 0;
+    }
+    .density-badge.ok { background: var(--example-bg); border-color: var(--example-border); color: var(--example-text); }
+    .density-badge.warn { background: var(--warn-bg); border-color: var(--warn-border); color: var(--warn-text); }
+    .density-badge.note { background: var(--note-bg); border-color: var(--note-border); color: var(--note-text); }
+    .density-meta {
+      font-size: .84rem;
+      color: var(--text-muted);
+      margin-top: .4rem;
+      line-height: 1.9;
+    }
+    .density-meta b { color: var(--heading); }
+    .density-actions { display: flex; gap: .6rem; margin-top: .8rem; flex-wrap: wrap; }
+    .density-suggest {
+      font-size: .84rem;
+      margin-top: .5rem;
+      color: var(--text-muted);
+    }
+
     @media (max-width: 980px) {
       :root { --header-h: 60px; }
       .page-wrap { grid-template-columns: 1fr; padding: 1rem 0.9rem; gap: 1rem; }
       .sidebar {
-        position: fixed;
-        top: 0; right: 0;
-        width: min(300px, 85vw);
-        height: 100vh;
-        max-height: 100vh;
-        border-radius: 0;
-        z-index: 200;
-        transform: translateX(105%);
-        transition: transform var(--transition);
-        padding-top: 1.2rem;
+        position: fixed; top: 0; right: 0;
+        width: min(300px, 85vw); height: 100vh; max-height: 100vh;
+        border-radius: 0; z-index: 200; transform: translateX(105%);
+        transition: transform var(--transition); padding-top: 1.2rem;
         box-shadow: -10px 0 40px rgba(0,0,0,0.25);
       }
       .sidebar.open { transform: translateX(0); }
@@ -637,16 +570,13 @@
       * { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
     }
 
-    /* Print */
     @media print {
       .site-header, .sidebar, .to-top, .overlay, .quiz-toolbar, .btn-answer, .icon-btn, .menu-toggle { display: none !important; }
       .page-wrap { grid-template-columns: 1fr; padding: 0; }
       .content-section, .hero { box-shadow: none; border: 1px solid #ccc; }
       body { background: #fff; color: #000; }
     }
-  .quiz-hidden {
-  display: none;
-}
+    .quiz-hidden { display: none; }
   </style>
 </head>
 <body>
@@ -684,11 +614,17 @@
         <li><a class="nav-link" href="#lesson6" data-nav="lesson6"><span class="nav-icon">۶</span>چگالی</a></li>
         <div class="nav-divider"></div>
         <li><a class="nav-link" href="#formulas" data-nav="formulas"><span class="nav-icon">Σ</span>فرمول‌نامه</a></li>
+        <li><a class="nav-link" href="#tools" data-nav="tools"><span class="nav-icon">🧮</span>ماشین‌حساب و تست چگالی</a></li>
         <li><a class="nav-link" href="#quiz" data-nav="quiz"><span class="nav-icon">؟</span>تست‌های تعاملی</a></li>
       </ul>
     </aside>
 
     <main class="main-content">
+      <div class="study-tools" role="search">
+        <input id="lessonSearch" type="search" placeholder="🔎 جست‌وجو در درس‌ها، فرمول‌ها و مثال‌ها..." aria-label="جست‌وجو در جزوه" />
+        <button class="btn-reset" id="focusMode" type="button">🎯 حالت تمرکز</button>
+        <span id="searchStatus" aria-live="polite"></span>
+      </div>
 
       <section id="home" class="hero">
         <div class="hero-badge">📘 جزوهٔ آموزشی تعاملی</div>
@@ -700,6 +636,11 @@
           <div class="stat-chip"><span>Σ</span>فرمول‌نامه</div>
           <div class="stat-chip"><span>🧪</span>۳۲ تست تعاملی</div>
           <div class="stat-chip"><span>🖨️</span>قابل چاپ</div>
+        </div>
+        <div class="progress-widget">
+          <div class="progress-top"><strong>مسیر یادگیری من</strong><span id="progressLabel">۰ از ۷ بخش تکمیل‌شده</span></div>
+          <div class="progress-track"><span id="progressFill"></span></div>
+          <p>پس از مطالعهٔ هر بخش، آن را تکمیل‌شده علامت بزن. پیشرفتت روی همین دستگاه ذخیره می‌شود.</p>
         </div>
       </section>
 
@@ -1046,6 +987,89 @@
         </div>
       </section>
 
+      <!-- ================= TOOLS SECTION ================= -->
+      <section id="tools" class="content-section">
+        <div class="section-head">
+          <div class="section-num">🧮</div>
+          <div style="flex:1;min-width:0;">
+            <h2>ابزارهای تعاملی</h2>
+            <small>ماشین‌حساب تبدیل یکا و تست تعاملی چگالی — با دکمه باز و بسته می‌شود</small>
+          </div>
+        </div>
+
+        <!-- ماشین حساب تبدیل یکا -->
+        <div class="tool-block">
+          <button class="tool-toggle" id="calcToggle" type="button" aria-expanded="false">
+            <span>🧮 ماشین‌حساب تبدیل یکا</span>
+            <span class="tool-chevron">▾</span>
+          </button>
+          <div class="tool-body" id="calcBody" hidden>
+            <div class="calc-grid">
+              <label>
+                مقدار
+                <input id="calcValue" type="number" inputmode="decimal" step="any" placeholder="مثلاً 72" />
+              </label>
+              <label>
+                از یکا
+                <select id="calcFrom"></select>
+              </label>
+              <label>
+                به یکا
+                <select id="calcTo"></select>
+              </label>
+            </div>
+            <div class="calc-result" id="calcResult" aria-live="polite">مقدار را وارد کنید…</div>
+            <div class="calc-actions">
+              <button class="btn-reset" id="calcSwap" type="button">⇄ جابه‌جایی یکاها</button>
+              <button class="btn-reset" id="calcClear" type="button">پاک کردن</button>
+            </div>
+            <div class="calc-hint">تبدیل‌ها بر اساس ضریب دقیق یکاها انجام می‌شود (مثلاً ۱ km = 1000 m).</div>
+          </div>
+        </div>
+
+        <!-- تست تعاملی چگالی -->
+        <div class="tool-block" style="margin-top:1rem;">
+          <button class="tool-toggle" id="densityToggle" type="button" aria-expanded="false">
+            <span>🧪 تست تعاملی چگالی با مواد مختلف</span>
+            <span class="tool-chevron">▾</span>
+          </button>
+          <div class="tool-body" id="densityBody" hidden>
+            <p style="font-size:.86rem;color:var(--text-muted);margin:0 0 .9rem;">
+              یکی از مواد را انتخاب کن (یا جرم و حجم دلخواه وارد کن) تا چگالی محاسبه شود، مادهٔ واقعی تشخیص داده شود، شناوری نسبت به آب بررسی شود و درصد خطا نسبت به چگالی مرجع نمایش داده شود.
+            </p>
+
+            <div class="density-row">
+              <label>
+                مادهٔ نمونه
+                <select id="densityMaterial"></select>
+              </label>
+              <label>
+                جرم (g)
+                <input id="densityMass" type="number" inputmode="decimal" step="any" placeholder="مثلاً 270" />
+              </label>
+              <label>
+                حجم (cm³)
+                <input id="densityVol" type="number" inputmode="decimal" step="any" placeholder="مثلاً 100" />
+              </label>
+            </div>
+
+            <div class="density-actions">
+              <button class="btn-reset" id="densitySolve" type="button">محاسبه و تشخیص</button>
+              <button class="btn-reset" id="densityClear" type="button">پاک کردن</button>
+            </div>
+
+            <div class="density-result" id="densityResult" aria-live="polite">
+              <div class="dr-main">—</div>
+              <div class="density-meta">برای شروع، یک ماده انتخاب کن یا جرم و حجم وارد کن.</div>
+            </div>
+
+            <div class="density-suggest" id="densitySuggest"></div>
+            <div class="calc-hint">چگالی مرجع: جدول ۱–۸ کتاب (در دمای ۰ °C و فشار ۱ اتمسفر). چگالی آب <bdi class="unit">1.00 g/cm³</bdi> در نظر گرفته شده است.</div>
+          </div>
+        </div>
+      </section>
+      <!-- ================= END TOOLS SECTION ================= -->
+
       <section id="quiz" class="content-section">
         <div class="section-head">
           <div class="section-num">؟</div>
@@ -1054,6 +1078,7 @@
 <div class="quiz-toolbar">
   <button class="btn-reset" id="toggleQuiz">📝 نمایش تست‌ها</button>
   <div class="score-pill" id="scorePill">پاسخ صحیح: ۰ از ۳۲</div>
+  <button class="btn-reset" id="reviewWrong">🔁 مرور پاسخ‌های غلط</button>
   <button class="btn-reset" id="resetQuiz">شروع دوباره</button>
 </div>
 <div id="quizList" class="quiz-hidden"></div>
@@ -1066,7 +1091,7 @@
     <div class="footer-line" style="margin-top:0.4rem;font-size:0.75rem;">بر مبنای کتاب درسی فیزیک (۱) پایهٔ دهم — فصل اول (فیزیک و اندازه‌گیری)
   </div>
   <div> بزودی لینک فصل دوم در همین قسمت اضافه خواهد شد</div> 
-    <div>طراحی و اطلاعات اموزشی :  امیرعلی نشاد و بارمان بلحسنی</div>
+    <div>طراحی و اطلاعات آموزشی: امیرعلی نشاد و بارمان بوالحسنی</div>
     <div>دبیرستان سما پاسداران</div>
   </footer>
 
@@ -1349,21 +1374,437 @@
     }
 
     /* ============ TOGGLE QUIZ ============ */
-const toggleQuizBtn = document.getElementById('toggleQuiz');
-let quizOpen = false;
+    const toggleQuizBtn = document.getElementById('toggleQuiz');
+    let quizOpen = false;
 
-toggleQuizBtn.addEventListener('click', () => {
-  quizOpen = !quizOpen;
-  quizList.classList.toggle('quiz-hidden', !quizOpen);
-  toggleQuizBtn.textContent = quizOpen ? '📝 بستن تست‌ها' : '📝 نمایش تست‌ها';
-  if (quizOpen) {
-    // اسکرول نرم به ابتدای تست‌ها
-    const offset = headerHeight() + 12;
-    const targetY = quizList.getBoundingClientRect().top + window.pageYOffset - offset;
-    window.scrollTo({ top: targetY, behavior: 'smooth' });
-  }
-});renderQuiz();
-    resetQuizBtn.addEventListener('click', resetQuiz);
+    toggleQuizBtn.addEventListener('click', () => {
+      quizOpen = !quizOpen;
+      quizList.classList.toggle('quiz-hidden', !quizOpen);
+      toggleQuizBtn.textContent = quizOpen ? '📝 بستن تست‌ها' : '📝 نمایش تست‌ها';
+      if (quizOpen) {
+        const offset = headerHeight() + 12;
+        const targetY = quizList.getBoundingClientRect().top + window.pageYOffset - offset;
+        window.scrollTo({ top: targetY, behavior: 'smooth' });
+      }
+    });
+    renderQuiz();
+    resetQuizBtn.addEventListener('click', () => { resetQuiz(); reviewWrongOnly = false; reviewWrongBtn.textContent = '🔁 مرور پاسخ‌های غلط'; quizList.querySelectorAll('.quiz-item').forEach(el => el.classList.remove('review-hidden')); });
+
+    /* ============ STUDY TOOLS ============ */
+    const lessonIds = ['lesson1','lesson2','lesson3','lesson4','lesson5','lesson6','formulas'];
+    const progressKey = 'physics10-ch1-progress-v1';
+    let completedLessons = [];
+    try { completedLessons = JSON.parse(localStorage.getItem(progressKey) || '[]'); } catch (e) { completedLessons = []; }
+    const progressFill = document.getElementById('progressFill');
+    const progressLabel = document.getElementById('progressLabel');
+    function updateProgress() {
+      const count = lessonIds.filter(id => completedLessons.includes(id)).length;
+      progressFill.style.width = `${count / lessonIds.length * 100}%`;
+      progressLabel.textContent = `${count} از ${lessonIds.length} بخش تکمیل‌شده`;
+      try { localStorage.setItem(progressKey, JSON.stringify(completedLessons)); } catch (e) {}
+    }
+    lessonIds.forEach((id, index) => {
+      const section = document.getElementById(id);
+      if (!section) return;
+      const button = document.createElement('button');
+      button.type = 'button'; button.className = 'lesson-complete';
+      const refresh = () => { const done = completedLessons.includes(id); button.classList.toggle('done', done); button.textContent = done ? '✓ این بخش تکمیل شد' : '○ علامت‌گذاری به‌عنوان مطالعه‌شده'; };
+      button.addEventListener('click', () => {
+        completedLessons = completedLessons.includes(id) ? completedLessons.filter(x => x !== id) : [...completedLessons, id];
+        refresh(); updateProgress();
+      });
+      const head = section.querySelector('.section-head');
+      if (head) head.insertAdjacentElement('afterend', button);
+      refresh();
+    });
+    updateProgress();
+
+    const searchInput = document.getElementById('lessonSearch');
+    const searchStatus = document.getElementById('searchStatus');
+    searchInput.addEventListener('input', () => {
+      const term = searchInput.value.trim().toLocaleLowerCase('fa');
+      let shown = 0;
+      document.querySelectorAll('.main-content > section[id]').forEach(section => {
+        const match = !term || section.innerText.toLocaleLowerCase('fa').includes(term);
+        section.hidden = !match;
+        if (match) shown++;
+      });
+      searchStatus.textContent = term ? `${shown} بخش پیدا شد` : '';
+    });
+
+    const focusBtn = document.getElementById('focusMode');
+    focusBtn.addEventListener('click', () => {
+      document.body.classList.toggle('focus-mode');
+      const active = document.body.classList.contains('focus-mode');
+      focusBtn.textContent = active ? '✕ خروج از حالت تمرکز' : '🎯 حالت تمرکز';
+    });
+
+    const reviewWrongBtn = document.getElementById('reviewWrong');
+    let reviewWrongOnly = false;
+    reviewWrongBtn.addEventListener('click', () => {
+      reviewWrongOnly = !reviewWrongOnly;
+      quizList.querySelectorAll('.quiz-item').forEach((item, idx) => {
+        const wrong = state.revealed[idx] && state.answers[idx] === false;
+        item.classList.toggle('review-hidden', reviewWrongOnly && !wrong);
+      });
+      reviewWrongBtn.textContent = reviewWrongOnly ? 'نمایش همهٔ سؤال‌ها' : '🔁 مرور پاسخ‌های غلط';
+      if (reviewWrongOnly && !state.answers.some((a, i) => state.revealed[i] && a === false)) {
+        reviewWrongOnly = false;
+        quizList.querySelectorAll('.quiz-item').forEach(item => item.classList.remove('review-hidden'));
+        reviewWrongBtn.textContent = 'هنوز پاسخ غلطی ثبت نشده';
+      }
+    });
+
+    /* ============ COLLAPSIBLE TOOLS ============ */
+    function wireToggle(btnId, bodyId) {
+      const btn = document.getElementById(btnId);
+      const body = document.getElementById(bodyId);
+      if (!btn || !body) return;
+      btn.addEventListener('click', () => {
+        const isOpen = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!isOpen));
+        body.hidden = isOpen;
+      });
+    }
+    wireToggle('calcToggle', 'calcBody');
+    wireToggle('densityToggle', 'densityBody');
+
+    /* ============ UNIT CONVERTER ============ */
+    const unitGroups = [
+      {
+        name: 'طول',
+        base: 'm',
+        units: {
+          'm': { label: 'متر (m)', factor: 1 },
+          'km': { label: 'کیلومتر (km)', factor: 1000 },
+          'cm': { label: 'سانتی‌متر (cm)', factor: 0.01 },
+          'mm': { label: 'میلی‌متر (mm)', factor: 0.001 },
+          'µm': { label: 'میکرومتر (µm)', factor: 1e-6 },
+          'nm': { label: 'نانومتر (nm)', factor: 1e-9 },
+          'in': { label: 'اینچ (in)', factor: 0.0254 },
+          'ft': { label: 'فوت (ft)', factor: 0.3048 },
+          'mi': { label: 'مایل (mi)', factor: 1609.344 }
+        }
+      },
+      {
+        name: 'جرم',
+        base: 'kg',
+        units: {
+          'kg': { label: 'کیلوگرم (kg)', factor: 1 },
+          'g': { label: 'گرم (g)', factor: 0.001 },
+          'mg': { label: 'میلی‌گرم (mg)', factor: 1e-6 },
+          't': { label: 'تن (t)', factor: 1000 }
+        }
+      },
+      {
+        name: 'زمان',
+        base: 's',
+        units: {
+          's': { label: 'ثانیه (s)', factor: 1 },
+          'min': { label: 'دقیقه (min)', factor: 60 },
+          'h': { label: 'ساعت (h)', factor: 3600 },
+          'day': { label: 'روز (day)', factor: 86400 }
+        }
+      },
+      {
+        name: 'سرعت',
+        base: 'm/s',
+        units: {
+          'm/s': { label: 'متر بر ثانیه (m/s)', factor: 1 },
+          'km/h': { label: 'کیلومتر بر ساعت (km/h)', factor: 1 / 3.6 },
+          'mi/h': { label: 'مایل بر ساعت (mi/h)', factor: 0.44704 }
+        }
+      },
+      {
+        name: 'حجم',
+        base: 'm³',
+        units: {
+          'm³': { label: 'متر مکعب (m³)', factor: 1 },
+          'L': { label: 'لیتر (L)', factor: 0.001 },
+          'mL': { label: 'میلی‌لیتر (mL)', factor: 1e-6 },
+          'cm³': { label: 'سانتی‌متر مکعب (cm³)', factor: 1e-6 },
+          'dm³': { label: 'دسی‌متر مکعب (dm³)', factor: 0.001 }
+        }
+      },
+      {
+        name: 'چگالی',
+        base: 'kg/m³',
+        units: {
+          'kg/m³': { label: 'کیلوگرم بر متر مکعب (kg/m³)', factor: 1 },
+          'g/cm³': { label: 'گرم بر سانتی‌متر مکعب (g/cm³)', factor: 1000 }
+        }
+      }
+    ];
+
+    function fillUnitSelect(selectEl) {
+      selectEl.innerHTML = '';
+      unitGroups.forEach((group, gi) => {
+        const og = document.createElement('optgroup');
+        og.label = group.name;
+        Object.keys(group.units).forEach(code => {
+          const o = document.createElement('option');
+          o.value = `${gi}::${code}`;
+          o.textContent = group.units[code].label;
+          og.appendChild(o);
+        });
+        selectEl.appendChild(og);
+      });
+      selectEl.selectedIndex = 0;
+    }
+
+    const calcFrom = document.getElementById('calcFrom');
+    const calcTo = document.getElementById('calcTo');
+    const calcValue = document.getElementById('calcValue');
+    const calcResult = document.getElementById('calcResult');
+
+    fillUnitSelect(calcFrom);
+    fillUnitSelect(calcTo);
+
+    function setDefaultUnits() {
+      const speedGroupIndex = unitGroups.findIndex(g => g.name === 'سرعت');
+      if (speedGroupIndex !== -1) {
+        [...calcFrom.options].forEach(o => {
+          if (o.value === `${speedGroupIndex}::km/h`) calcFrom.value = o.value;
+        });
+        [...calcTo.options].forEach(o => {
+          if (o.value === `${speedGroupIndex}::m/s`) calcTo.value = o.value;
+        });
+      }
+    }
+    setDefaultUnits();
+
+    function parseUnitValue(val) {
+      const [gi, code] = String(val).split('::');
+      const group = unitGroups[parseInt(gi, 10)];
+      return { group, code };
+    }
+
+    function formatNumber(n) {
+      if (!isFinite(n)) return '—';
+      const abs = Math.abs(n);
+      if (abs !== 0 && (abs >= 1e7 || abs < 1e-4)) {
+        return n.toExponential(4);
+      }
+      return String(Number(n.toPrecision(10)));
+    }
+
+    function updateCalc() {
+      const rawVal = calcValue.value.trim();
+      if (rawVal === '') {
+        calcResult.textContent = 'مقدار را وارد کنید…';
+        return;
+      }
+      const value = Number(rawVal.replace(/,/g, ''));
+      if (!isFinite(value)) {
+        calcResult.textContent = 'مقدار معتبر وارد کنید.';
+        return;
+      }
+
+      const fromInfo = parseUnitValue(calcFrom.value);
+      const toInfo = parseUnitValue(calcTo.value);
+      if (!fromInfo.group || !toInfo.group) return;
+
+      if (fromInfo.group.name !== toInfo.group.name) {
+        calcResult.textContent = 'یکاهای انتخاب‌شده از یک دسته نیستند (مثلاً طول و جرم را نمی‌توان به هم تبدیل کرد).';
+        return;
+      }
+
+      const fromFactor = fromInfo.group.units[fromInfo.code].factor;
+      const toFactor = toInfo.group.units[toInfo.code].factor;
+
+      const baseValue = value * fromFactor;
+      const result = baseValue / toFactor;
+
+      calcResult.textContent =
+        `${formatNumber(value)} ${fromInfo.code} = ${formatNumber(result)} ${toInfo.code}`;
+    }
+
+    calcValue.addEventListener('input', updateCalc);
+    calcFrom.addEventListener('change', updateCalc);
+    calcTo.addEventListener('change', updateCalc);
+
+    document.getElementById('calcSwap').addEventListener('click', () => {
+      const tmp = calcFrom.value;
+      calcFrom.value = calcTo.value;
+      calcTo.value = tmp;
+      updateCalc();
+    });
+
+    document.getElementById('calcClear').addEventListener('click', () => {
+      calcValue.value = '';
+      calcResult.textContent = 'مقدار را وارد کنید…';
+    });
+
+    /* ============ DENSITY TEST ============ */
+    // چگالی مرجع بر حسب g/cm³ (بر اساس جدول ۱–۸ کتاب)
+    const materials = [
+      { name: 'یخ', density: 0.917 },
+      { name: 'آب', density: 1.00 },
+      { name: 'اتیل الکل', density: 0.806 },
+      { name: 'بنزن', density: 0.879 },
+      { name: 'آلومینیم', density: 2.70 },
+      { name: 'آهن', density: 7.86 },
+      { name: 'مس', density: 8.92 },
+      { name: 'نقره', density: 10.5 },
+      { name: 'سرب', density: 11.3 },
+      { name: 'جیوه', density: 13.6 },
+      { name: 'اورانیوم', density: 19.1 },
+      { name: 'طلا', density: 19.3 },
+      { name: 'پلاتین', density: 21.4 },
+      { name: 'اُسمیم', density: 22.5 },
+      { name: 'هوا', density: 0.00129 },
+      { name: 'هلیوم', density: 0.000179 },
+      { name: 'هیدروژن', density: 0.0000899 }
+    ];
+
+    const densityMaterial = document.getElementById('densityMaterial');
+    const densityMass = document.getElementById('densityMass');
+    const densityVol = document.getElementById('densityVol');
+    const densityResult = document.getElementById('densityResult');
+    const densitySuggest = document.getElementById('densitySuggest');
+    const densitySolve = document.getElementById('densitySolve');
+    const densityClear = document.getElementById('densityClear');
+
+    // پر کردن لیست مواد
+    materials.forEach((m, i) => {
+      const o = document.createElement('option');
+      o.value = String(i);
+      o.textContent = `${m.name} (${m.density} g/cm³)`;
+      densityMaterial.appendChild(o);
+    });
+    // گزینهٔ «دلخواه»
+    {
+      const o = document.createElement('option');
+      o.value = 'custom';
+      o.textContent = '— مادهٔ دلخواه (فقط تشخیص خودکار) —';
+      densityMaterial.appendChild(o);
+    }
+
+    function findClosestMaterial(density) {
+      let best = null;
+      let bestDiff = Infinity;
+      materials.forEach(m => {
+        const diff = Math.abs(m.density - density);
+        if (diff < bestDiff) { bestDiff = diff; best = m; }
+      });
+      return { material: best, diff: bestDiff };
+    }
+
+    function updateDensityFromMaterial() {
+      const val = densityMaterial.value;
+      if (val === 'custom') return;
+      const m = materials[parseInt(val, 10)];
+      if (!m) return;
+      // اگر جرم وارد شده، حجم را طوری تنظیم می‌کنیم که چگالی مطابق ماده باشد
+      // ولی برای جلوگیری از سردرگمی، فقط پیشنهاد می‌دهیم
+    }
+
+    function solveDensity() {
+      const massRaw = densityMass.value.trim();
+      const volRaw = densityVol.value.trim();
+      const mass = Number(massRaw);
+      const vol = Number(volRaw);
+
+      if (massRaw === '' || volRaw === '' || !isFinite(mass) || !isFinite(vol) || vol <= 0) {
+        densityResult.innerHTML = `
+          <div class="dr-main">—</div>
+          <div class="density-meta">لطفاً جرم (g) و حجم (cm³) را به‌درستی وارد کن (حجم باید بزرگ‌تر از صفر باشد).</div>`;
+        densitySuggest.textContent = '';
+        return;
+      }
+
+      const density = mass / vol; // g/cm³
+      const densityKg = density * 1000; // kg/m³
+
+      const selectedVal = densityMaterial.value;
+      let selectedMaterial = null;
+      let refDensity = null;
+      let errorPercent = null;
+
+      if (selectedVal !== 'custom') {
+        selectedMaterial = materials[parseInt(selectedVal, 10)];
+        if (selectedMaterial) {
+          refDensity = selectedMaterial.density;
+          errorPercent = Math.abs(density - refDensity) / refDensity * 100;
+        }
+      }
+
+      const closest = findClosestMaterial(density);
+      const closestName = closest.material ? closest.material.name : '—';
+
+      // شناوری نسبت به آب
+      let floatBadge = '';
+      if (Math.abs(density - 1.00) < 0.005) {
+        floatBadge = `<span class="density-badge note">≈ چگالی آب — حالت مرزی شناوری</span>`;
+      } else if (density < 1.00) {
+        floatBadge = `<span class="density-badge ok">کمتر از آب ← روی آب شناور می‌ماند</span>`;
+      } else {
+        floatBadge = `<span class="density-badge warn">بیشتر از آب ← در آب فرو می‌رود</span>`;
+      }
+
+      // مقایسه با مادهٔ انتخاب‌شده
+      let compareHtml = '';
+      if (selectedMaterial) {
+        const isClose = errorPercent !== null && errorPercent <= 5;
+        const badgeClass = isClose ? 'ok' : 'warn';
+        const verdict = isClose ? 'نزدیک به مقدار مرجع (خطای کمتر از ۵٪)' : 'اختلاف قابل توجه با مقدار مرجع';
+        compareHtml = `
+          <div class="density-meta">
+            <b>مادهٔ انتخابی:</b> ${selectedMaterial.name} — چگالی مرجع: ${selectedMaterial.density} g/cm³
+            <br>
+            <b>درصد خطا نسبت به مرجع:</b> ${errorPercent.toFixed(2)}٪
+            <br>
+            <span class="density-badge ${badgeClass}">${verdict}</span>
+          </div>`;
+      }
+
+      // تشخیص نزدیک‌ترین ماده
+      const closestBadgeClass = closest.diff / (closest.material ? closest.material.density : 1) < 0.05 ? 'ok' : 'note';
+
+      densityResult.innerHTML = `
+        <div class="dr-main">چگالی محاسبه‌شده: ${formatNumber(density)} g/cm³</div>
+        <div style="text-align:center; margin-bottom:.5rem;">
+          ${floatBadge}
+          <span class="density-badge ${closestBadgeClass}">نزدیک‌ترین ماده: ${closestName}</span>
+        </div>
+        <div class="density-meta">
+          <b>معادل SI:</b> ${formatNumber(densityKg)} kg/m³
+          <br>
+          <b>محاسبه:</b> ρ = m/V = ${formatNumber(mass)} g ÷ ${formatNumber(vol)} cm³ = ${formatNumber(density)} g/cm³
+        </div>
+        ${compareHtml}
+      `;
+
+      // پیشنهاد
+      if (selectedVal === 'custom') {
+        densitySuggest.innerHTML = `اگر می‌خواهی مقدار دقیق یکی از مواد جدول را ببینی، آن ماده را از فهرست بالا انتخاب کن.`;
+      } else {
+        densitySuggest.textContent = '';
+      }
+    }
+
+    densitySolve.addEventListener('click', solveDensity);
+    densityClear.addEventListener('click', () => {
+      densityMass.value = '';
+      densityVol.value = '';
+      densityMaterial.value = '0';
+      densityResult.innerHTML = `
+        <div class="dr-main">—</div>
+        <div class="density-meta">برای شروع، یک ماده انتخاب کن یا جرم و حجم وارد کن.</div>`;
+      densitySuggest.textContent = '';
+    });
+
+    // اگر کاربر ماده را عوض کرد، فقط یک پیشنهاد جرم/حجم نشان بده
+    densityMaterial.addEventListener('change', () => {
+      const val = densityMaterial.value;
+      if (val === 'custom') {
+        densitySuggest.textContent = 'حالت دلخواه: فقط جرم و حجم را وارد کن؛ برنامه نزدیک‌ترین ماده را حدس می‌زند.';
+        return;
+      }
+      const m = materials[parseInt(val, 10)];
+      if (!m) return;
+      densitySuggest.textContent = `پیشنهاد: مثلاً جرم ۱۰۰ g و حجم ${formatNumber(100 / m.density)} cm³ (یا هر جرم/حجم دیگری که نسبتشان همان چگالی مرجع باشد).`;
+    });
 
     /* ============ INIT ACTIVE NAV ============ */
     (function initActive() {
